@@ -1,8 +1,11 @@
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Coustard', serif; 
 }
+/*google font family is above*/
 
 body {
     height: 100vh;

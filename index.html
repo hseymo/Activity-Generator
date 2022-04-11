@@ -66,7 +66,29 @@
               </select>
               <label for="type">Type of Activity</label>
             </div>
-
+          <!-- price -->
+            <div class="input-field col s12">
+              <select id="price">
+                <option disabled selected>Pick one...</option>
+                <option value="0.0">Free</option>
+                <option value="nopreference">No preference</option>
+              </select>
+              <label for="price">Actiity Cost</label>
+            </div>
+          <!-- participants -->
+            <div class="input-field col s12">
+              <input placeholder="Type a number..." id="participants" type="text" class="validate">
+              <label for="participants">Number of Participants</label>
+            </div>
+          <!-- accessiility -->
+            <div class="input-field col s12">
+              <select id="accessiility">
+                <option disabled selected>Pick one...</option>
+                <option value="1">Yes</option>
+                <option value="nopreference">No preference</option>
+              </select>
+              <label for="accessibility">Accessibility</label>
+            </div>
             <div>
               <button id="findactivity" type="submit" class="btn custom-btn">Find me an activity!</button>
             </div>

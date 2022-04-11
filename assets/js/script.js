@@ -8,8 +8,12 @@ $(document).ready(function(){
       console.log('clicked Get Started')
   })
 
+  let getActivity = "http://www.boredapi.com/api/activity/"
+
 //   click event for find an activity
   $('#findactivity').on("click", function () {
-      console.log("clicked Find Activity")
-      
+      fetch(getActivity)
+      .then(function (response) {
+        return response.json();
+      })
   })

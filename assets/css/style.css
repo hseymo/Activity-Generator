@@ -10,6 +10,7 @@
 body {
     height: 100vh;
     background-color: gray;
+    font-family: 'Coustard', serif; 
 }
 
 .results {
@@ -17,9 +18,11 @@ body {
     width: fit-content;
     padding: 0px 35px 25px 15px;
     margin:auto;
+    font-family: 'Coustard', serif; 
 }
 
 .resultTitle {
     font-weight: bold;
     font-size: large;
+    font-family: 'Coustard', serif; 
 }

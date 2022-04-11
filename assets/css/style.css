@@ -11,15 +11,3 @@ body {
     height: 100vh;
     background-color: gray;
 }
-
-.results {
-    border: 3px solid black;
-    width: fit-content;
-    padding: 5px 35px 25px 15px;
-    margin:auto;
-}
-
-.resultTitle {
-    font-weight: bold;
-    font-size: large;
-}

@@ -51,10 +51,9 @@
           <p>If so, please let us know! When you are ready, click "Find me an activity"!</p>
           <form id="preferenceForm">
           <!-- type -->
-            <div class="form-group">
-              <label for="type">Type of Activity</label>
-              <select class="form-control" id="type">
-                <option selected disabled>Pick one...</option>
+            <div class="input-field col s12">
+              <select id="type">
+                <option disabled selected>Pick one...</option>
                 <option value="education">Education</option>
                 <option value="recreational">Recreational</option>
                 <option value="social">Social</option>
@@ -65,8 +64,12 @@
                 <option value="music">Music</option>
                 <option value="busywork">Busywork</option>
               </select>
+              <label for="type">Type of Activity</label>
             </div>
-            <button id="findactivity" type="submit" class="btn custom-btn">Find me an activity!</button>
+
+            <div>
+              <button id="findactivity" type="submit" class="btn custom-btn">Find me an activity!</button>
+            </div>
           </form>
         </div>
       </div>
@@ -74,7 +77,7 @@
   </div>
       
   <!-- results card section -->
-  <div class="results">
+  <div class="results card-panel slategray">
     <p class="resultTitle">Here is your activity!</p>
     <ul>
       <li id="type">Type: </li>

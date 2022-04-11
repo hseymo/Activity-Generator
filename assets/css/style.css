@@ -16,7 +16,7 @@ body {
 .results {
     border: 3px solid black;
     width: fit-content;
-    padding: 0px 35px 25px 15px;
+    padding: 5px 35px 25px 15px;
     margin:auto;
     font-family: 'Coustard', serif; 
 }

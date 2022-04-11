@@ -1,15 +1,13 @@
 // welcome modal upon page load
 $(document).ready(function(){
-    $('#welcomeModal').modal();
-    $('#welcomeModal').modal('open');
-  });
-
-  $('.getstarted').on("click", function () {
-      console.log('clicked Get Started')
-  })
+  $('#welcomeModal').modal();
+  $('#welcomeModal').modal('open');
+  $('select').formSelect();
+});
 
 //   click event for find an activity
-  $('#findactivity').on("click", function () {
-      console.log("clicked Find Activity")
-      
-  })
+$('#findactivity').on("click", function (event) {
+  event.preventDefault();
+    console.log("clicked Find Activity")
+    
+})

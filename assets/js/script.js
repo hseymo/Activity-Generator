@@ -11,6 +11,7 @@ var free = false;
 var ParticipantsEl;
 var AccessibilityEl;
 var accessibility = false;
+var favorites = [];
 
 
 //   click event for find an activity
@@ -128,6 +129,43 @@ function createURL() {
           viewPrice.textContent = "Price: " + dollarSign;
           viewPart.textContent = "Participants: " + returnedParticipants;
           viewAccess.textContent = "Accessibility: " + easeOfAccess;
+
+          // add favorite button
+          var resultCard = $('#result-card')
+          var newButton = $('<button>');
+          newButton.attr("type", "submit");
+          newButton.addClass("grey darken-1 waves-effect waves-orange btn custom-btn");
+          newButton.text("Favorite this activity");
+          resultCard.append(newButton);
+
+          // add event listener for button
+          newButton.on("click", function () {
+            var favoriteActivity = {
+              activity: returnedActivity,
+              type: returnedType,
+              price: dollarSign,
+              participants: returnedParticipants,
+              accessibility: easeOfAccess
+            }
+            
+            console.log(favoriteActivity)
+
+            function saveFavorite () {
+              var storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+              if (storedFavorites !== null) {
+                favorites = storedFavorites;
+              }
+              favorites.push(favoriteActivity);
+              localStorage.setItem("favorites", JSON.stringify(favorites));
+            }
+            saveFavorite();
+
+            var favoriteSuccess = $('<p>');
+            favoriteSuccess.text("Added to favorites!");
+            resultCard.append(favoriteSuccess);
+          })
+
+
         }
         // retrieve wiki data
         var wikiURL = 'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + returnedActivity + '&utf8=&format=json&origin=*'

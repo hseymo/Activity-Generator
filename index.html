@@ -20,12 +20,12 @@
 <body>
   <header id="header">
     <nav>
-      <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">WikiOnBored</a>
+      <div class="nav-wrapper brown lighten-3">
+        <a href="#" class="brand-logo center ">WikiOnBored</a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-          <li><a href="./index.html">Activities</a></li>
-          <li><a href="./journal.html">Journal</a></li>
-          <li><a href="collapsible.html">Favorites</a></li>
+          <a class=" grey darken-1 waves-effect waves-purple btn" href="./index.html" target="_blank" rel="noopener noreferrer">Activities</a>
+          <a class=" grey darken-1 waves-effect waves-purple btn" href="./journal.html" target="_blank" rel="noopener noreferrer">Journal</a>
+          <a class=" grey darken-1 waves-effect waves-purple btn" href="collapsible.html" target="_blank" rel="noopener noreferrer">Results</a>
         </ul>
       </div>
     </nav>
@@ -45,7 +45,7 @@
 
   <div class="row">
     <div class="col s12 m3">
-      <div class="card blue-grey darken-1">
+      <div class="card   brown lighten-1">
         <div class="card-content white-text">
           <span class="card-title">Do you have preferences?</span>
           <p>If so, please let us know! When you are ready, click "Find me an activity"!</p>
@@ -64,7 +64,7 @@
                 <option value="music">Music</option>
                 <option value="busywork">Busywork</option>
               </select>
-              <label for="type">Type of Activity</label>
+              <label style="color:black;" for="type">Type of Activity</label>
             </div>
           <!-- price -->
             <div class="input-field col s12">
@@ -73,12 +73,12 @@
                 <option value="0.0">Free</option>
                 <option value="nopreference">No preference</option>
               </select>
-              <label for="price">Actiity Cost</label>
+              <label style="color:black;"for="price">Actiity Cost</label>
             </div>
           <!-- participants -->
             <div class="input-field col s12">
               <input placeholder="Type a number..." id="participants" type="number" min="1" max="8" class="validate">
-              <label for="participants">Number of Participants</label>
+              <label style="color:black;" for="participants">Number of Participants</label>
             </div>
           <!-- accessibility -->
             <div class="input-field col s12">
@@ -87,10 +87,10 @@
                 <option value="1">Yes</option>
                 <option value="nopreference">No preference</option>
               </select>
-              <label for="accessibility">Accessibility</label>
+              <label style="color:black;" for="accessibility">Accessibility</label>
             </div>
             <div>
-              <button id="findactivity" type="submit" class="btn custom-btn">Find me an activity!</button>
+              <button id="findactivity" type="submit" class=" grey darken-1 waves-effect waves-orange btn custom-btn">Find me an activity!</button>
             </div>
           </form>
         </div>
@@ -101,10 +101,11 @@
       <!-- results card section -->
       <div class="row">
         <div class="col s12 m9">
-          <div class="card-panel blue-grey darken-1">
+          <div class="card-panel   brown lighten-1">
             <span class="black-text">
               <p class="resultTitle white-text">Here is your activity!</p>
               <ul>
+                <li id="activityview">Activity: </li>
                 <li id="typeview">Type: </li>
                 <li id="priceview">Price: </li>
                 <li id="participantsview">Participants: </li>
@@ -114,9 +115,18 @@
             </span>
           </div>
         </div>
+        <div id="errorModal" class="modal">
+          <div class="modal-content">
+            <h4>Oops!</h4>
+            <p>We couldn't find anything with your specific parameters, please try changing them around and try again!</p>
+          </div>
+          <div class="modal-footer">
+            <a id="#tryAgain" class="tryAgain modal-close waves-effect waves-green btn-flat">Try Again?</a>
+          </div>
+        </div>
         <div>
           <div class="col s12 m9">
-            <div class="card-panel blue-grey darken-1">
+            <div class="card-panel   brown lighten-1">
               <span class="black-text">
                 <p class="resultTitle white-text">Wiki Search Results:</p>
                 <nav id="wikiResults" class="card-panel white">

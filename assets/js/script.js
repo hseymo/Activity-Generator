@@ -13,10 +13,11 @@ var AccessibilityEl;
 var accessibility = false;
 var favorites = [];
 
+
 //   click event for find an activity
 $('#findactivity').on("click", function (event) {
   event.preventDefault();
-
+  $("p").remove();
 // pull data from form submission and save as variables
 TypeEl = $('#type').val();
 CostEl = $('#price').val();
@@ -60,7 +61,7 @@ if (!TypeEl && !free && !ParticipantsEl && !accessibility) {
 }
 console.log(boredURL)
 getApi();
-
+// creating function to fetch from BoredAPI
 function getApi() {
   fetch(boredURL)
     .then(function (response) {
@@ -195,6 +196,15 @@ function getApi() {
             var favoriteSuccess = $('<p>');
             favoriteSuccess.text("Added to favorites!");
             resultCard.append(favoriteSuccess);
+            function resetActivity() {
+              viewActivity.textContent = 'Activity: '
+              viewType.textContent = 'Type: '
+              viewPrice.textContent = 'Price: '
+              viewPart.textContent = 'Participants: '
+              viewAccess.textContent = 'Accessibility: '
+              newButton.remove()
+            }
+            resetActivity();
           })
 
         // putting text content to display returned data based on parameters

@@ -74,6 +74,7 @@ function createURL() {
       })
       .then (function(data) {
         console.log(data)
+        // retrieve boredAPI data
         var returnedActivity = data.activity;
         var returnedType = data.type;
         var returnedParticipants = data.participants;
@@ -81,12 +82,46 @@ function createURL() {
         var returnedAccessibility = data.accessibility;
         var returnedLink = data.link;
         console.log(returnedActivity,returnedType,returnedParticipants,returnedPrice,returnedAccessibility,returnedLink)
+
+        // TODO: POST ACTIVITY DATA TO PAGE
+
+        // retrieve wiki data
+        var wikiURL = 'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + returnedActivity + '&utf8=&format=json&origin=*'
+
+        function getWiki() {
+          fetch(wikiURL)
+            .then(function (response) {
+              if (!response.ok) {
+                throw response.json();
+              }
+            return response.json();  
+            })
+            .then (function(data) {
+              var results = data.query.search;
+              console.log(results);
+              // retrieving 10 relevant wiki results
+              for (let i = 0; i < results.length; i++) {
+                let resultsEl = results[i];
+                console.log(resultsEl)
+                var title = resultsEl.title;
+                var snippet = resultsEl.snippet; 
+                // remove extra HTML from snippets
+                snippet = snippet.replaceAll('<span class="searchmatch">', '');
+                snippet = snippet.replaceAll('</span>', '')
+                // TODO: parse for wiki link! 
+                console.log(title, snippet)
+              }
+            
+            // TODO: Post wiki results to page! (Create card for each one?)
+            
+            })
+        }
+        getWiki();
+
       })
   }
 }
 
-    console.log(AccessibilityEl);
-    console.log(accessibility);
     // Code to display input query results in "Here" box
     // var viewType = document.getElementById("typeview")
     // var viewPrice = document.getElementById("priceview")
@@ -97,5 +132,4 @@ function createURL() {
     // viewPrice.append(JSON.stringify())
     // viewPart.append(JSON.stringify())
     // viewAccess.append(JSON.stringify())
-})
 

@@ -240,23 +240,43 @@ function getApi() {
               //   </ul>
               // </nav>
               // `
-              let resultCardContent = ` 
-                <div class="row">
-                <div class="col s12 m6">
-                  <div class="card grey darken-1">
-                    <div class="card-content white-text">
-                      <span class="card-title">${title}</span>
-                      <p>Description: ${snippet}</p>
-                    </div>
-                    <div class="card-action">
-                      <a href="#">Click to learn more</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              // let resultCardContent = ` 
+              //   <div class="row">
+              //   <div class="col s12 m6">
+              //     <div class="card grey darken-1">
+              //       <div class="card-content white-text">
+              //         <span class="card-title">${title}</span>
+              //         <p>Description: ${snippet}</p>
+              //       </div>
+              //       <div class="card-action">
+              //         <a href="#">Click to learn more</a>
+              //       </div>
+              //     </div>
+              //   </div>
+              // </div>
                         
-                `
-              wikiResults.innerHTML += resultCardContent;
+              //   `
+              // wikiResults.innerHTML += resultCardContent;
+              function wikiEntry() {
+                let wikiEl = document.createElement('div');
+                wikiEl.attr = 'class', 'card blue-grey darken-1 card-content white-text';
+                let wikiCard = document.createElement('div');
+                wikiCard.attr = 'class', 'card-content white-text';
+                let wikiTitle = document.createElement('h5');
+                wikiTitle.textContent = `Title: ${title}`;
+                let wikiSnippet = document.createElement('p');
+                wikiSnippet.textContent = `Description: ${snippet}`;
+
+                wikiCard.append(wikiTitle);
+                wikiCard.append(wikiSnippet);
+
+                wikiEl.append(wikiCard);
+                
+                document.querySelector('.wikiResults').append(wikiEl);
+                console.log(wikiEl);
+              }
+
+              wikiEntry();
             }
 
             // TODO: Post wiki results to page! (Create card for each one?)

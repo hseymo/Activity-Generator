@@ -164,35 +164,57 @@ function createURL() {
                 snippet = snippet.replaceAll('</span>', '')
                 // TODO: parse for wiki link! 
                 console.log(title, snippet)
-                let wikiResults = document.getElementById('wikiResultsCard')
-                let resultCard = document.createElement('div');
-                resultCard.classList = 'card-panel';
 
-                // let resultCardContent = `
-                // <nav id="wikiResultsCard" class="card-panel white">
-                //   <ul id="wikiResultList" class="black-text m3">
-                //       <li class="h"> Title: ${title} </li>
-                //       <li class="truncate"> Description: ${snippet} </li>
-                //   </ul>
-                // </nav>
-                // `
-                let resultCardContent = ` 
-                <div class="row">
-                <div class="col s12 m6">
-                  <div class="card grey darken-1">
-                    <div class="card-content white-text">
-                      <span class="card-title">${title}</span>
-                      <p>Description: ${snippet}</p>
-                    </div>
-                    <div class="card-action">
-                      <a href="#">Click to learn more</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                function wikiEntry() {
+                  let wikiEl = document.createElement('div');
+                  wikiEl.addClass('card blue-grey darken-1 card-content white-text');
+                  let wikiCard = document.createElement('div');
+                  wikiCard.addClass('card-content white-text');
+                  let wikiTitle = document.createElement('h5');
+                  wikiTitle.textContent = `Title: ${title}`;
+                  let wikiSnippet = document.createElement('p');
+                  wikiSnippet.textContent = `Description: ${snippet}`;
+
+                  wikiCard.append(wikiTitle);
+                  wikiCard.append(wikiSnippet);
+
+                  wikiEl.append(wikiCard);
+
+                  document.getElementById('wikiResults').append('wikiEl');
+                  console.log(wikiEl);
+                }
+
+                wikiEntry();
+
+              //   let wikiResults = document.getElementById('wikiResultsCard')
+              //   let resultCard = document.createElement('div');
+              //   resultCard.classList = 'card-panel';
+
+              //   // let resultCardContent = `
+              //   // <nav id="wikiResultsCard" class="card-panel white">
+              //   //   <ul id="wikiResultList" class="black-text m3">
+              //   //       <li class="h"> Title: ${title} </li>
+              //   //       <li class="truncate"> Description: ${snippet} </li>
+              //   //   </ul>
+              //   // </nav>
+              //   // `
+              //   let resultCardContent = ` 
+              //   <div class="row">
+              //   <div class="col s12 m6">
+              //     <div class="card grey darken-1">
+              //       <div class="card-content white-text">
+              //         <span class="card-title">${title}</span>
+              //         <p>Description: ${snippet}</p>
+              //       </div>
+              //       <div class="card-action">
+              //         <a href="#">Click to learn more</a>
+              //       </div>
+              //     </div>
+              //   </div>
+              // </div>
                         
-                `
-                wikiResults.innerHTML += resultCardContent;
+              //   `
+              //   wikiResults.innerHTML += resultCardContent;
               }
             
             // TODO: Post wiki results to page! (Create card for each one?)

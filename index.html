@@ -2,155 +2,172 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Activity Generator</title>
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <!-- google fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Coustard&display=swap" rel="stylesheet">
-  <!-- custom stylesheet -->
-  <link rel="stylesheet" href="./assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Generator</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Coustard&display=swap" rel="stylesheet">
+    <!-- custom stylesheet -->
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
-  <header id="header">
-    <nav>
-      <div class="nav-wrapper brown lighten-3">
-        <a href="#" class="brand-logo center ">WikiOnBored</a>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-          <a class=" grey darken-1 waves-effect waves-purple btn" href="./index.html" target="_blank" rel="noopener noreferrer">Activities</a>
-          <a class=" grey darken-1 waves-effect waves-purple btn" href="./journal.html" target="_blank" rel="noopener noreferrer">Journal</a>
-          <a class=" grey darken-1 waves-effect waves-purple btn" href="collapsible.html" target="_blank" rel="noopener noreferrer">Results</a>
-        </ul>
-      </div>
-    </nav>
-  </header>
+    <header id="header">
+        <nav>
+            <div class="nav-wrapper brown lighten-3">
+                <a href="#" class="brand-logo center ">WikiOnBored</a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <a class=" grey darken-1 waves-effect waves-purple btn" href="./index.html" target="_blank"
+                        rel="noopener noreferrer">Activities</a>
+                    <a class=" grey darken-1 waves-effect waves-purple btn" href="./journal.html" target="_blank"
+                        rel="noopener noreferrer">Journal</a>
+                    <a class=" grey darken-1 waves-effect waves-purple btn" href="collapsible.html" target="_blank"
+                        rel="noopener noreferrer">Results</a>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
     <main>
-<!-- Welcome Modal -->
-  <div id="welcomeModal" class="modal">
-    <div class="modal-content">
-      <h4>Welcome!</h4>
-      <p>Are you here because you're bored? Are you looking for something fun to do today? We can help! Let us give you a suggestion for a random activity to complete!</p>
-    </div>
-    <div class="modal-footer">
-      <a id="#getStarted" class="getstarted modal-close waves-effect waves-green btn-flat">Get Started</a>
-    </div>
-  </div>
+        <!-- Welcome Modal -->
+        <div id="welcomeModal" class="modal">
+            <div class="modal-content">
+                <h4>Welcome!</h4>
+                <p>Are you here because you're bored? Are you looking for something fun to do today? We can help! Let us
+                    give you a suggestion for a random activity to complete!</p>
+            </div>
+            <div class="modal-footer">
+                <a id="#getStarted" class="getstarted modal-close waves-effect waves-green btn-flat">Get Started</a>
+            </div>
+        </div>
 
-  <div class="row">
-    <div class="col s12 m3">
-      <div class="card   brown lighten-1">
-        <div class="card-content white-text">
-          <span class="card-title">Do you have preferences?</span>
-          <p>If so, please let us know! When you are ready, click "Find me an activity"!</p>
-          <form id="preferenceForm">
-          <!-- type -->
-            <div class="input-field col s12">
-              <select id="type">
-                <option disabled selected>Pick one...</option>
-                <option value="education">Education</option>
-                <option value="recreational">Recreational</option>
-                <option value="social">Social</option>
-                <option value="diy">DIY</option>
-                <option value="charity">Charity</option>
-                <option value="cooking">Cooking</option>
-                <option value="relaxation">Relaxation</option>
-                <option value="music">Music</option>
-                <option value="busywork">Busywork</option>
-              </select>
-              <label style="color:black;" for="type">Type of Activity</label>
+        <div class="row">
+            <div class="col s12 m3">
+                <div class="card   brown lighten-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">Do you have preferences?</span>
+                        <p>If so, please let us know! When you are ready, click "Find me an activity"!</p>
+                        <form id="preferenceForm">
+                            <!-- type -->
+                            <div class="input-field col s12">
+                                <select id="type">
+                                    <option disabled selected>Pick one...</option>
+                                    <option value="education">Education</option>
+                                    <option value="recreational">Recreational</option>
+                                    <option value="social">Social</option>
+                                    <option value="diy">DIY</option>
+                                    <option value="charity">Charity</option>
+                                    <option value="cooking">Cooking</option>
+                                    <option value="relaxation">Relaxation</option>
+                                    <option value="music">Music</option>
+                                    <option value="busywork">Busywork</option>
+                                </select>
+                                <label style="color:black;" for="type">Type of Activity</label>
+                            </div>
+                            <!-- price -->
+                            <div class="input-field col s12">
+                                <select id="price">
+                                    <option disabled selected>Pick one...</option>
+                                    <option value="0.0">Free</option>
+                                    <option value="nopreference">No preference</option>
+                                </select>
+                                <label style="color:black;" for="price">Actiity Cost</label>
+                            </div>
+                            <!-- participants -->
+                            <div class="input-field col s12">
+                                <input placeholder="Type a number..." id="participants" type="number" min="1" max="8"
+                                    class="validate">
+                                <label style="color:black;" for="participants">Number of Participants</label>
+                            </div>
+                            <!-- accessibility -->
+                            <div class="input-field col s12">
+                                <select id="accessibility">
+                                    <option disabled selected>Pick one...</option>
+                                    <option value="1">Yes</option>
+                                    <option value="nopreference">No preference</option>
+                                </select>
+                                <label style="color:black;" for="accessibility">Accessibility</label>
+                            </div>
+                            <div>
+                                <button id="findactivity" type="submit"
+                                    class=" grey darken-1 waves-effect waves-orange btn custom-btn">Find me an
+                                    activity!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-          <!-- price -->
-            <div class="input-field col s12">
-              <select id="price">
-                <option disabled selected>Pick one...</option>
-                <option value="0.0">Free</option>
-                <option value="nopreference">No preference</option>
-              </select>
-              <label style="color:black;"for="price">Actiity Cost</label>
-            </div>
-          <!-- participants -->
-            <div class="input-field col s12">
-              <input placeholder="Type a number..." id="participants" type="number" min="1" max="8" class="validate">
-              <label style="color:black;" for="participants">Number of Participants</label>
-            </div>
-          <!-- accessibility -->
-            <div class="input-field col s12">
-              <select id="accessibility">
-                <option disabled selected>Pick one...</option>
-                <option value="1">Yes</option>
-                <option value="nopreference">No preference</option>
-              </select>
-              <label style="color:black;" for="accessibility">Accessibility</label>
-            </div>
-            <div>
-              <button id="findactivity" type="submit" class=" grey darken-1 waves-effect waves-orange btn custom-btn">Find me an activity!</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
 
-    <div class="row">
-      <!-- results card section -->
-      <div class="row">
-        <div class="col s12 m9">
-          <div class="card-panel   brown lighten-1">
-            <span class="black-text">
-              <p class="resultTitle white-text">Here is your activity!</p>
-              <ul>
-                <li id="activityview">Activity: </li>
-                <li id="typeview">Type: </li>
-                <li id="priceview">Price: </li>
-                <li id="participantsview">Participants: </li>
-                <li id="accessview">Accessibility: </li>
-              </ul>
-              <ul></ul>
-            </span>
-          </div>
-        </div>
-        <div id="errorModal" class="modal">
-          <div class="modal-content">
-            <h4>Oops!</h4>
-            <p>We couldn't find anything with your specific parameters, please try changing them around and try again!</p>
-          </div>
-          <div class="modal-footer">
-            <a id="#tryAgain" class="tryAgain modal-close waves-effect waves-green btn-flat">Try Again?</a>
-          </div>
-        </div>
-        <div>
-          <div class="col s12 m9">
-            <div class="card-panel   brown lighten-1">
-              <span class="black-text">
-                <p class="resultTitle white-text">Wiki Search Results:</p>
-                <nav id="wikiResultsCard" class="card-panel white">
-                  <ul id="wikiResultList" class="black-text m3">
-                      
-                  </ul>
-                </nav>
-                <!-- <button class="btn waves-effect waves-light" type="submit" name="action">Save to Journal
+            <div class="row">
+                <!-- results card section -->
+                <div class="row">
+                    <div class="col s12 m9">
+                        <div class="card-panel   brown lighten-1">
+                            <span class="black-text">
+                                <p class="resultTitle white-text">Here is your activity!</p>
+                                <ul>
+                                    <li id="activityview">Activity: </li>
+                                    <li id="typeview">Type: </li>
+                                    <li id="priceview">Price: </li>
+                                    <li id="participantsview">Participants: </li>
+                                    <li id="accessview">Accessibility: </li>
+                                </ul>
+                                <ul></ul>
+                            </span>
+                        </div>
+                    </div>
+                    <div id="errorModal" class="modal">
+                        <div class="modal-content">
+                            <h4>Oops!</h4>
+                            <p>We couldn't find anything with your specific parameters, please try changing them around
+                                and try again!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="#tryAgain" class="tryAgain modal-close waves-effect waves-green btn-flat">Try
+                                Again?</a>
+                        </div>
+                    </div>
+                    <!-- Wiki result cards -->
+                    <div class="row">
+                        <div class="col s12 m9">
+                            <div class="card-panel brown lighten-1">
+                                <span class="black-text">
+                                    <p class="resultTitle white-text">Wiki Search Results:</p>
+                                    <div id="wikiResults">
+
+                                        <!-- <div class="card blue-grey darken-1 card-content white-text">
+                            <div class="card-content white-text">
+                                <h5 id="wikiTitle" class="">haha!</h5>
+                                
+                                
+                                <p id="wiki-description">yeet</p>
+                            </div>
+                        </div> -->
+
+                                        <!-- <button class="btn waves-effect waves-light" type="submit" name="action">Save to Journal
                   <i class="material-icons right"></i>
                 </button> -->
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-</div>
 
-  </main>
+    </main>
 
-  <!-- script section -->
+    <!-- script section -->
 
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="./assets/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

@@ -4,7 +4,7 @@ $(document).ready(function () {
   $('#welcomeModal').modal('open');
   $('select').formSelect();
 });
-
+// setting variables
 var TypeEl;
 var CostEl;
 var free = false;
@@ -19,11 +19,13 @@ $('#findactivity').on("click", function (event) {
   // pull data from form submission and save as variables
   TypeEl = $('#type').val();
   CostEl = $('#price').val();
+  // setting "free" display conditions
   if (CostEl == 0.0) {
     free = true;
   } else {
     free = false;
   };
+  // fetching the value for the number ranges of participants and accessibility parameters
   ParticipantsEl = $('#participants').val();
   AccessibilityEl = $('#accessibility').val();
   if (AccessibilityEl == 1) {
@@ -34,7 +36,7 @@ $('#findactivity').on("click", function (event) {
   console.log(TypeEl, free, ParticipantsEl, accessibility);
   createURL()
 })
-
+// creating funciton to fetch from BoredAPI
 function createURL() {
   var boredURL;
   // if no parameters are used, set boredURL to random URL
@@ -74,6 +76,7 @@ function createURL() {
       })
       .then(function (data) {
         console.log(data.error)
+        // if statement to determine validity of parameters
         if (data.error == "No activity found with the specified parameters") {
           $('#errorModal').modal();
           $('#errorModal').modal('open');
@@ -88,23 +91,14 @@ function createURL() {
           var returnedLink = data.link;
           console.log(returnedActivity, returnedType, returnedParticipants, returnedPrice, returnedAccessibility, returnedLink)
 
-          // TODO: POST ACTIVITY DATA TO PAGE
-          // Code to display input query results in "Here" box
+          // Code to display input query results in "Here..." box
           var viewActivity = document.getElementById("activityview")
           var viewType = document.getElementById("typeview")
           var viewPrice = document.getElementById("priceview")
           var viewPart = document.getElementById("participantsview")
           var viewAccess = document.getElementById("accessview")
-          // Use if statement to validate and randomize
-          // if (data == "error") {
-          //   fetch(boredURL).then(function (response) {
-          //     if (!response.ok) {
-          //       throw response.json();
-          //     }
-          //     return response.json();
-          //   })
-          // } else if (data != "error") {
           var dollarSign;
+          // if statement to display a value symbol instead of the 0-1 range
           if (returnedPrice < 0.3 && returnedPrice > 0) {
             dollarSign = "$"
           } else if (returnedPrice >= 0.3 && returnedPrice < 0.6) {
@@ -114,6 +108,7 @@ function createURL() {
           } else {
             dollarSign = "Free"
           }
+          // if statement to display level of difficulty in words instead of 0-1 range
           var easeOfAccess;
           if (returnedAccessibility >= 0 && returnedAccessibility < 0.4) {
             easeOfAccess = "Difficult"
@@ -122,6 +117,7 @@ function createURL() {
           } else {
             easeOfAccess = "Easy peasy"
           }
+          // putting text content to display returned data based on parameters
           viewActivity.textContent = "Activity: " + returnedActivity;
           viewType.textContent = "Type: " + returnedType;
           viewPrice.textContent = "Price: " + dollarSign;

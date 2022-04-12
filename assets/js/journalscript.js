@@ -46,7 +46,7 @@ $(document).ready(function(){
   });
 
 var journalEntries = [];  
-
+// Recalls journal entries from previous logs
 function pageLoad() {
     var downloadedEntries = JSON.parse(localStorage.getItem("entries"));
     if (downloadedEntries !== null) {

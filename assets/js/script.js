@@ -4,20 +4,14 @@ $(document).ready(function () {
   $('#welcomeModal').modal('open');
   $('select').formSelect();
 });
-<<<<<<< HEAD
 // setting variables
-=======
-
-
-  let getActivity = "http://www.boredapi.com/api/activity/"
-
->>>>>>> dev
 var TypeEl;
 var CostEl;
 var free = false;
 var ParticipantsEl;
 var AccessibilityEl;
 var accessibility = false;
+var favorites = [];
 
 //   click event for find an activity
 $('#findactivity').on("click", function () {
@@ -127,6 +121,91 @@ function getApi() {
         } else {
           easeOfAccess = "Easy peasy"
         }
+          // retrieve boredAPI data
+          var returnedActivity = data.activity;
+          var returnedType = data.type;
+          returnedType = returnedType.charAt(0).toUpperCase() + returnedType.slice(1);
+          var returnedParticipants = data.participants;
+          var returnedPrice = data.price;
+          var returnedAccessibility = data.accessibility;
+          var returnedLink = data.link;
+          console.log(returnedActivity, returnedType, returnedParticipants, returnedPrice, returnedAccessibility, returnedLink)
+
+          // TODO: POST ACTIVITY DATA TO PAGE
+          // Code to display input query results in "Here" box
+          var viewActivity = document.getElementById("activityview")
+          var viewType = document.getElementById("typeview")
+          var viewPrice = document.getElementById("priceview")
+          var viewPart = document.getElementById("participantsview")
+          var viewAccess = document.getElementById("accessview")
+          // Use if statement to validate and randomize
+          // if (data == "error") {
+          //   fetch(boredURL).then(function (response) {
+          //     if (!response.ok) {
+          //       throw response.json();
+          //     }
+          //     return response.json();
+          //   })
+          // } else if (data != "error") {
+          var dollarSign;
+          if (returnedPrice < 0.3 && returnedPrice > 0) {
+            dollarSign = "$"
+          } else if (returnedPrice >= 0.3 && returnedPrice < 0.6) {
+            dollarSign = "$$"
+          } else if (returnedPrice >= 0.6 && returnedPrice <= 0.9) {
+            dollarSign = "$$$"
+          } else {
+            dollarSign = "Free"
+          }
+          var easeOfAccess;
+          if (returnedAccessibility >= 0 && returnedAccessibility < 0.4) {
+            easeOfAccess = "Difficult"
+          } else if (returnedAccessibility >= 0.4 && returnedAccessibility < 0.8) {
+            easeOfAccess = "Moderate"
+          } else {
+            easeOfAccess = "Easy peasy"
+          }
+          viewActivity.textContent = "Activity: " + returnedActivity;
+          viewType.textContent = "Type: " + returnedType;
+          viewPrice.textContent = "Price: " + dollarSign;
+          viewPart.textContent = "Participants: " + returnedParticipants;
+          viewAccess.textContent = "Accessibility: " + easeOfAccess;
+
+          // add favorite button
+          var resultCard = $('#result-card')
+          var newButton = $('<button>');
+          newButton.attr("type", "submit");
+          newButton.addClass("grey darken-1 waves-effect waves-orange btn custom-btn");
+          newButton.text("Favorite this activity");
+          resultCard.append(newButton);
+
+          // add event listener for button
+          newButton.on("click", function () {
+            var favoriteActivity = {
+              activity: returnedActivity,
+              type: returnedType,
+              price: dollarSign,
+              participants: returnedParticipants,
+              accessibility: easeOfAccess
+            }
+            
+            console.log(favoriteActivity)
+
+            function saveFavorite () {
+              var storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+              if (storedFavorites !== null) {
+                favorites = storedFavorites;
+              }
+              favorites.push(favoriteActivity);
+              localStorage.setItem("favorites", JSON.stringify(favorites));
+            }
+            saveFavorite();
+
+            var favoriteSuccess = $('<p>');
+            favoriteSuccess.text("Added to favorites!");
+            resultCard.append(favoriteSuccess);
+          })
+
         // putting text content to display returned data based on parameters
         viewActivity.textContent = "Activity: " + returnedActivity;
         viewType.textContent = "Type: " + returnedType;

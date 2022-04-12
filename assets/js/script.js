@@ -59,6 +59,7 @@ function createURL() {
     if (accessibility) {
       boredURL = boredURL + '&minaccessibility=0.1';
     }
+
   } 
   console.log(boredURL)
   getApi();
@@ -83,3 +84,18 @@ function createURL() {
       })
   }
 }
+
+    console.log(AccessibilityEl);
+    console.log(accessibility);
+    // Code to display input query results in "Here" box
+    // var viewType = document.getElementById("typeview")
+    // var viewPrice = document.getElementById("priceview")
+    // var viewPart = document.getElementById("participantsview")
+    // var viewAccess = document.getElementById("accessview")
+    // Fill in stringify() with result fetch
+    // viewType.append(JSON.stringify())
+    // viewPrice.append(JSON.stringify())
+    // viewPart.append(JSON.stringify())
+    // viewAccess.append(JSON.stringify())
+})
+

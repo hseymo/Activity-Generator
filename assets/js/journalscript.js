@@ -98,7 +98,7 @@ function postEntry(activity, date, before, after, comments) {
     let newEl = $('<div>');
     newEl.addClass("col s12 m6");
     let newCard = $('<div>');
-    newCard.addClass("card blue-grey darken-1 card-content white-text");
+    newCard.addClass("card grey darken-1 card-content white-text");
     let newContent = $('<div>');
     newContent.addClass("card-content white-text");
     let newActivity = $('<h5>');

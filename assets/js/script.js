@@ -5,6 +5,9 @@ $(document).ready(function () {
   $('select').formSelect();
 });
 
+
+  let getActivity = "http://www.boredapi.com/api/activity/"
+
 var TypeEl;
 var CostEl;
 var free = false;
@@ -12,10 +15,19 @@ var ParticipantsEl;
 var AccessibilityEl;
 var accessibility = false;
 
-
 //   click event for find an activity
+  $('#findactivity').on("click", function () {
+      fetch(getActivity)
+      .then(function (response) {
+        return response.json();
+      })
+  })
 $('#findactivity').on("click", function (event) {
   event.preventDefault();
+
+    console.log("clicked Find Activity")
+    
+})
   // pull data from form submission and save as variables
   TypeEl = $('#type').val();
   CostEl = $('#price').val();
@@ -32,8 +44,8 @@ $('#findactivity').on("click", function (event) {
     accessibility = false;
   }
   console.log(TypeEl, free, ParticipantsEl, accessibility);
-  createURL()
-})
+  createURL();
+
 
 function createURL() {
   var boredURL;
@@ -144,7 +156,7 @@ function createURL() {
               // retrieving 10 relevant wiki results
               for (let i = 0; i < results.length; i++) {
                 let resultsEl = results[i];
-                console.log(resultsEl)
+                console.log(resultsEl);
                 var title = resultsEl.title;
                 var snippet = resultsEl.snippet;
                 // remove extra HTML from snippets
@@ -152,10 +164,43 @@ function createURL() {
                 snippet = snippet.replaceAll('</span>', '')
                 // TODO: parse for wiki link! 
                 console.log(title, snippet)
+                let wikiResults = document.getElementById('wikiResultsCard')
+                let resultCard = document.createElement('div');
+                resultCard.classList = 'card-panel';
+
+                // let resultCardContent = `
+                // <nav id="wikiResultsCard" class="card-panel white">
+                //   <ul id="wikiResultList" class="black-text m3">
+                //       <li class="h"> Title: ${title} </li>
+                //       <li class="truncate"> Description: ${snippet} </li>
+                //   </ul>
+                // </nav>
+                // `
+                let resultCardContent = ` 
+                <div class="row">
+                <div class="col s12 m6">
+                  <div class="card grey darken-1">
+                    <div class="card-content white-text">
+                      <span class="card-title">${title}</span>
+                      <p>Description: ${snippet}</p>
+                    </div>
+                    <div class="card-action">
+                      <a href="#">Click to learn more</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                        
+                `
+                wikiResults.innerHTML += resultCardContent;
               }
-
-              // TODO: Post wiki results to page! (Create card for each one?)
-
+            
+            // TODO: Post wiki results to page! (Create card for each one?)
+              console.log(results.length);
+              //    $('#wikiResultList').append('<li>' + 'Title: ' + results[i].title + '</li>' + '<br></br>');
+              //    $('#wikiResultList').append('<li>' + 'Snippet: ' + results[i].snippet + '</li>' + '<br></br>');
+              
+            
             })
         }
         getWiki();
@@ -164,5 +209,3 @@ function createURL() {
 
   }
 }
-
-

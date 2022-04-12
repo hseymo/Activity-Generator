@@ -15,8 +15,6 @@ var ParticipantsEl;
 var AccessibilityEl;
 var accessibility = false;
 
-
-
 //   click event for find an activity
   $('#findactivity').on("click", function () {
       fetch(getActivity)
@@ -95,7 +93,7 @@ function createURL() {
         var returnedPrice = data.price;
         var returnedAccessibility = data.accessibility;
         var returnedLink = data.link;
-        console.log(returnedActivity,returnedType,returnedParticipants,returnedPrice,returnedAccessibility,returnedLink)
+        // console.log(returnedActivity,returnedType,returnedParticipants,returnedPrice,returnedAccessibility,returnedLink)
 
         // TODO: POST ACTIVITY DATA TO PAGE
 
@@ -111,12 +109,14 @@ function createURL() {
             return response.json();  
             })
             .then (function(data) {
+              var resultsLink = data.link;
+              console.log(resultsLink);
               var results = data.query.search;
               console.log(results);
               // retrieving 10 relevant wiki results
               for (let i = 0; i < results.length; i++) {
                 let resultsEl = results[i];
-                console.log(resultsEl)
+                console.log(resultsEl);
                 var title = resultsEl.title;
                 var snippet = resultsEl.snippet; 
                 // remove extra HTML from snippets
@@ -124,9 +124,42 @@ function createURL() {
                 snippet = snippet.replaceAll('</span>', '')
                 // TODO: parse for wiki link! 
                 console.log(title, snippet)
+                let wikiResults = document.getElementById('wikiResultsCard')
+                let resultCard = document.createElement('div');
+                resultCard.classList = 'card-panel';
+
+                // let resultCardContent = `
+                // <nav id="wikiResultsCard" class="card-panel white">
+                //   <ul id="wikiResultList" class="black-text m3">
+                //       <li class="h"> Title: ${title} </li>
+                //       <li class="truncate"> Description: ${snippet} </li>
+                //   </ul>
+                // </nav>
+                // `
+                let resultCardContent = ` 
+                <div class="row">
+                <div class="col s12 m6">
+                  <div class="card grey darken-1">
+                    <div class="card-content white-text">
+                      <span class="card-title">${title}</span>
+                      <p>Description: ${snippet}</p>
+                    </div>
+                    <div class="card-action">
+                      <a href="#">Click to learn more</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                        
+                `
+                wikiResults.innerHTML += resultCardContent;
               }
             
             // TODO: Post wiki results to page! (Create card for each one?)
+              console.log(results.length);
+              //    $('#wikiResultList').append('<li>' + 'Title: ' + results[i].title + '</li>' + '<br></br>');
+              //    $('#wikiResultList').append('<li>' + 'Snippet: ' + results[i].snippet + '</li>' + '<br></br>');
+              
             
             })
         }
@@ -135,7 +168,6 @@ function createURL() {
       })
   }
 }
-
     // Code to display input query results in "Here" box
     // var viewType = document.getElementById("typeview")
     // var viewPrice = document.getElementById("priceview")

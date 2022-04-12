@@ -4,14 +4,11 @@ $(document).ready(function () {
   $('#welcomeModal').modal('open');
   $('select').formSelect();
 });
-<<<<<<< HEAD
 // setting variables
-=======
 
 
   let getActivity = "http://www.boredapi.com/api/activity/"
 
->>>>>>> dev
 var TypeEl;
 var CostEl;
 var free = false;
@@ -75,7 +72,7 @@ if (!TypeEl && !free && !ParticipantsEl && !accessibility) {
 }
 console.log(boredURL)
 getApi();
-
+// creating function to fetch from BoredAPI
 function getApi() {
   fetch(boredURL)
     .then(function (response) {
@@ -201,5 +198,4 @@ function getApi() {
     })
 
 
-}
 }

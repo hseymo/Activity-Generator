@@ -82,6 +82,7 @@ function createURL() {
           // retrieve boredAPI data
           var returnedActivity = data.activity;
           var returnedType = data.type;
+          returnedType = returnedType.charAt(0).toUpperCase() + returnedType.slice(1);
           var returnedParticipants = data.participants;
           var returnedPrice = data.price;
           var returnedAccessibility = data.accessibility;

@@ -16,10 +16,6 @@ var favorites = [];
 //   click event for find an activity
 $('#findactivity').on("click", function (event) {
   event.preventDefault();
-
-  console.log("clicked Find Activity")
-
-
 // pull data from form submission and save as variables
 TypeEl = $('#type').val();
 CostEl = $('#price').val();
@@ -272,7 +268,5 @@ function getApi() {
       }
       getWiki();
     })
-
-
 }
 })

@@ -119,7 +119,7 @@ $('.delete').on('click', function() {
 
 function postEntry(activity, date, before, after, comments) {
     let newEl = $('<div>');
-    newEl.addClass("col s12 m6");
+    newEl.addClass("col s12 m12 l6");
     let newCard = $('<div>');
     newCard.addClass("card grey darken-1 card-content white-text");
     let newContent = $('<div>');

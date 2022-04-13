@@ -7,6 +7,10 @@
 }
 /*google font family is above*/
 
+.brand-logo {
+    margin-right: 15px;
+}
+
 body {
     height: 100vh;
     background-color: #3A3845;

@@ -142,7 +142,7 @@ function getApi() {
           })
           .then(function (data) {
             var results = data.query.search;
-            console.log(results);
+            console.log(data.query.search);
 
             var wikiHeader = document.getElementById('wikiHeader')
             wikiHeader.attr = 'class', 'resultTitle white-text'
@@ -153,30 +153,37 @@ function getApi() {
             }
 
             // retrieving 10 relevant wiki results
-            for (let i = 0; i < results.length; i++) {
+            for (let i = 0; i < 3; i++) {
               let resultsEl = results[i];
-              console.log(resultsEl);
+              let resultsPageID = results[i].pageid;
+              let pageURL = 'https://en.wikipedia.org/?curid=' + resultsPageID;
+              console.log(pageURL);
               var title = resultsEl.title;
               var snippet = resultsEl.snippet;
               // remove extra HTML from snippets
               snippet = snippet.replaceAll('<span class="searchmatch">', '');
               snippet = snippet.replaceAll('</span>', '')
               snippet = snippet.replaceAll('&quot', '')
-              // TODO: parse for wiki link! 
               console.log(title, snippet)
 
               function wikiEntry() {
                 let wikiEl = document.createElement('div');
-                wikiEl.attr = 'class', 'card blue-grey darken-1 card-content white-text';
+                wikiEl.setAttribute('class', 'card grey darken-1 card-content white-text');
                 let wikiCard = document.createElement('div');
-                wikiCard.attr = 'class', 'card-content white-text';
+                wikiCard.setAttribute('class', 'card-content white-text');
                 let wikiTitle = document.createElement('h5');
-                wikiTitle.textContent = `Title: ${title}`;
+                wikiTitle.textContent = `${title}`;
                 let wikiSnippet = document.createElement('p');
                 wikiSnippet.textContent = `Description: ${snippet}`;
+                let linkToPage = document.createElement('a');
+                linkToPage.textContent = 'Click Me';
+                linkToPage.setAttribute('href', pageURL);
+                linkToPage.setAttribute('target', '_blank');
+
 
                 wikiCard.append(wikiTitle);
                 wikiCard.append(wikiSnippet);
+                wikiCard.append(linkToPage);
                 wikiEl.append(wikiCard);
                 document.querySelector('.wikiResults').append(wikiEl);
                 console.log(wikiEl);

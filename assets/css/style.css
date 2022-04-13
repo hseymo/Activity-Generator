@@ -36,3 +36,15 @@ body {
 #favoriteButton {
     margin: 10px;
 }
+
+.datepicker-day-button {
+    background-color: transparent;
+    border: none;
+    line-height: 38px;
+    display: block;
+    width: 100%;
+    border-radius: 50%;
+    padding: 0 5px;
+    cursor: pointer;
+    color:blue;
+}

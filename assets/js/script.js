@@ -89,14 +89,6 @@ function getApi() {
         returnedParticipants = data.participants;
         var returnedPrice = data.price;
         var returnedAccessibility = data.accessibility;
-        
-        // Code to display input query results in "Here..." box
-        var activityHeader = document.getElementById("resultheader")
-        var viewActivity = document.getElementById("activityview")
-        var viewType = document.getElementById("typeview")
-        var viewPrice = document.getElementById("priceview")
-        var viewPart = document.getElementById("participantsview")
-        var viewAccess = document.getElementById("accessview")
 
         // if statement to display a value symbol instead of the 0-1 range
         if (returnedPrice < 0.3 && returnedPrice > 0) {
@@ -117,6 +109,14 @@ function getApi() {
           easeOfAccess = "Easy peasy"
         }
 
+        // Code to display input query results in "Here..." box
+        var activityHeader = document.getElementById("resultheader")
+        var viewActivity = document.getElementById("activityview")
+        var viewType = document.getElementById("typeview")
+        var viewPrice = document.getElementById("priceview")
+        var viewPart = document.getElementById("participantsview")
+        var viewAccess = document.getElementById("accessview")
+
         // putting text content to display returned data based on parameters
         activityHeader.textContent = "Here is your activity!"
         viewActivity.textContent = "Activity: " + returnedActivity;
@@ -125,10 +125,8 @@ function getApi() {
         viewPart.textContent = "Participants: " + returnedParticipants;
         viewAccess.textContent = "Accessibility: " + easeOfAccess;
 
-          // show favorite button
-          var resultCard = $('#result-card')
-          
-          favoriteButton.show();
+        // show favorite button          
+        favoriteButton.show();
           
 
       }
@@ -183,7 +181,6 @@ function getApi() {
                 document.querySelector('.wikiResults').append(wikiEl);
                 console.log(wikiEl);
               }
-
               wikiEntry();
             }
           })
@@ -203,28 +200,27 @@ function saveFavorite (object) {
   localStorage.setItem("favorites", JSON.stringify(favorites));
 }
 
-          // add event listener for button
-          favoriteButton.on("click", function (event) {
-            event.preventDefault();
-            favoriteButton.hide()
+// add event listener for button
+favoriteButton.on("click", function (event) {
+  event.preventDefault();
+  favoriteButton.hide()
 
-            var favoriteActivity = {
-              activity: returnedActivity,
-              type: returnedType,
-              price: dollarSign,
-              participants: returnedParticipants,
-              accessibility: easeOfAccess
-            }
+  var favoriteActivity = {
+    activity: returnedActivity,
+    type: returnedType,
+    price: dollarSign,
+    participants: returnedParticipants,
+    accessibility: easeOfAccess
+  }
             
-            console.log(favoriteActivity)
+  console.log(favoriteActivity)
 
-            saveFavorite(favoriteActivity);
+  saveFavorite(favoriteActivity);
 
-            // show 'added to faves'
-            var notify = $('#notifyfave');
-            notify.css('display', 'block');
-            setTimeout(function(){
-              notify.css('display', 'none')
-            }, 2000)
-
-          })
+  // show 'added to faves'
+  var notify = $('#notifyfave');
+  notify.css('display', 'block');
+  setTimeout(function(){
+    notify.css('display', 'none')
+    }, 2000)
+})

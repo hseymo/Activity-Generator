@@ -49,9 +49,9 @@ $('#findactivity').on("click", function (event) {
 
 // if no parameters are used, set boredURL to random URL
   if (!TypeEl && !free && !ParticipantsEl && !accessibility) {
-    boredURL = 'http://www.boredapi.com/api/activity/'
+    boredURL = 'https://www.boredapi.com/api/activity/'
   } else if (TypeEl || free || ParticipantsEl || accessibility) {
-    boredURL = 'http://www.boredapi.com/api/activity?'
+    boredURL = 'https://www.boredapi.com/api/activity?'
   // if a type was provided, add query parameter to URL
       if (TypeEl) {boredURL = boredURL + '&type=' + TypeEl};
       // if preference for activity to be free, add query parameter 
@@ -127,8 +127,10 @@ function getApi() {
 
           // show favorite button
           var resultCard = $('#result-card')
+          
           favoriteButton.show();
           
+
       }
       // retrieve wiki data
       var wikiURL = 'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + returnedActivity + '&utf8=&format=json&origin=*'
@@ -161,7 +163,7 @@ function getApi() {
               // remove extra HTML from snippets
               snippet = snippet.replaceAll('<span class="searchmatch">', '');
               snippet = snippet.replaceAll('</span>', '')
-              // TODO: REMOVE QUOTE TEXT
+              snippet = snippet.replaceAll('&quot', '')
               // TODO: parse for wiki link! 
               console.log(title, snippet)
 
@@ -205,16 +207,6 @@ function saveFavorite (object) {
           favoriteButton.on("click", function (event) {
             event.preventDefault();
             favoriteButton.hide()
-            // EXPERIMENT
-            // faveParentEl = $(this).parent();
-            // faveUl = faveParentEl.children().eq(1)[0];
-            // console.log(faveUl)
-
-            // faveActivity = 
-            // faveType = 
-            // favePrice =
-            // faveParticipants =
-            // faveAccess = 
 
             var favoriteActivity = {
               activity: returnedActivity,

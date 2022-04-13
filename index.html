@@ -46,10 +46,10 @@
 
         <div class="row">
             <div class="col s12 m3">
-                <div class="card   brown lighten-1">
+                <div class="card brown lighten-1">
                     <div class="card-content white-text">
-                        <span class="card-title">Do you have preferences?</span>
-                        <p>If so, please let us know! When you are ready, click "Find me an activity"!</p>
+                        <span class="card-title center">Do you have preferences?</span>
+                        <h6 id="prefpara" class="center mb3">If so, please let us know!</h6>
                         <form id="preferenceForm">
                             <!-- type -->
                             <div class="input-field col s12">
@@ -107,49 +107,40 @@
         <div class="col s12 m9">
           <div class="card-panel   brown lighten-1">
             <span id="result-card" class="black-text">
-              <h5 class="resultTitle white-text">Here is your activity!</h5>
+              <h5 id="resultheader" class="resultTitle white-text">We can't wait to find you an activity! Please click "Find Me an Activity" button to the left...</h5>
               <ul>
-                <li id="activityview">Activity: </li>
-                <li id="typeview">Type: </li>
-                <li id="priceview">Price: </li>
-                <li id="participantsview">Participants: </li>
-                <li id="accessview">Accessibility: </li>
+                <li id="activityview"></li>
+                <li id="typeview"></li>
+                <li id="priceview"></li>
+                <li id="participantsview"></li>
+                <li id="accessview"></li>
               </ul>
-              <ul></ul>
+              <button id="favoriteButton" type="submit" class="grey darken-1 waves-effect waves-orange btn custom-btn" style="display: none">Favorite this activity</button>
+              <span id="notifyfave" class="center" style="display: none">Added to favorites!</span>
             </span>
-          </div>
-        </div>
-        <div id="errorModal" class="modal">
-          <div class="modal-content">
-            <h4>Oops!</h4>
-            <p>We couldn't find anything with your specific parameters, please try changing them around and try again!</p>
-          </div>
-          <div class="modal-footer">
-            <a id="#tryAgain" class="tryAgain modal-close waves-effect waves-green btn-flat">Try Again?</a>
           </div>
         </div>
         <div>
           <div class="col s12 m9">
-            <div class="card-panel   brown lighten-1">
-              <span class="black-text">
-                <h5 class="resultTitle white-text">Wiki Search Results:</h5>
-                    <div class="row">
-                        <div class="wikiResults">
-
-                        </div>
-                    </div>
-                
-                <!-- <button class="btn waves-effect waves-light" type="submit" name="action">Save to Journal
-                  <i class="material-icons right"></i>
-                </button> -->
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="card-panel brown lighten-1">
+                <h5 id="wikiHeader" class="resultTitle white-text">Seriously! Click it!</h5>
+                <div class="row">
+                  <div class="wikiResults"></div>
             </div>
+          </div>
+        </div>
 
     </main>
+<!-- search error modal -->
+    <div id="errorModal" class="modal">
+      <div class="modal-content">
+        <h4>Oops!</h4>
+        <h4>We couldn't find anything with your specific preferences, please enter different ones and try again!</h4>
+      </div>
+      <div class="modal-footer">
+        <a id="#tryAgain" class="tryAgain modal-close waves-effect waves-green btn-flat">Try Again?</a>
+      </div>
+    </div>
 
     <!-- script section -->
 

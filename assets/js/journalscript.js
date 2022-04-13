@@ -53,7 +53,6 @@ function pageLoad() {
         journalEntries = downloadedEntries;
         for (let i = journalEntries.length-1; i>=0; i--) {
             var thisEntry = journalEntries[i]
-            console.log(thisEntry);
             postEntry(thisEntry.activity, thisEntry.date, thisEntry.before, thisEntry.after, thisEntry.textinput);
         }
     }
@@ -72,6 +71,7 @@ $('#submitentry').on("click", function (event) {
     var comments = $('#write').val().trim();
     console.log(activityCompleted, dateCompleted, feelingsBefore, feelingsAfter, comments);
 
+    if (activityCompleted || dateCompleted || feelingsBefore || feelingsAfter || comments) {
     postEntry(activityCompleted, dateCompleted, feelingsBefore, feelingsAfter, comments);
 
     // save to local storage
@@ -91,6 +91,29 @@ $('#submitentry').on("click", function (event) {
     $('#before').val('');
     $('#after').val('');
     $('#write').val('');
+}
+
+$('.delete').on('click', function() {
+    var selButton = $(this);
+    var selEntry = selButton.parent();
+    var selHeader = selEntry.children().eq(0);
+    var selActivity = selHeader[0].innerHTML;
+    selActivity = selActivity.replaceAll('Activity: ', '');
+    console.log(selActivity);
+
+    var storedEntries = JSON.parse(localStorage.getItem("entries"));
+    if (storedEntries !== null) {
+        for (let i=0; i<storedEntries.length; i++) {
+            let thisEntry = storedEntries[i];
+            if (selActivity == thisEntry.activity) {
+                storedEntries.splice(i, 1);
+            }
+        }
+        localStorage.setItem("entries", JSON.stringify(storedEntries));
+    };
+    selEntry.remove();
+    location.reload();
+    })
 
 })
 
@@ -111,12 +134,16 @@ function postEntry(activity, date, before, after, comments) {
     newAfter.text('How you were feeling after: ' + after);
     let newComments = $('<p>');
     newComments.text('Your comments: ' + comments);
+    let newButton = $('<button>')
+    newButton.addClass('delete grey darken-1 waves-effect waves-orange btn custom-btn');
+    newButton.text('Delete Entry')
 
     newContent.append(newActivity);
     newContent.append(newDate);
     newContent.append(newBefore);
     newContent.append(newAfter);
     newContent.append(newComments);
+    newContent.append(newButton);
 
     newCard.append(newContent);
     newEl.append(newCard);
@@ -132,3 +159,25 @@ function saveEntry(object) {
     journalEntries.push(object);
     localStorage.setItem("entries", JSON.stringify(journalEntries));
 }
+
+$('.delete').on('click', function() {
+    var selButton = $(this);
+    var selEntry = selButton.parent();
+    var selHeader = selEntry.children().eq(0);
+    var selActivity = selHeader[0].innerHTML;
+    selActivity = selActivity.replaceAll('Activity: ', '');
+    console.log(selActivity);
+
+    var storedEntries = JSON.parse(localStorage.getItem("entries"));
+    if (storedEntries !== null) {
+        for (let i=0; i<storedEntries.length; i++) {
+            let thisEntry = storedEntries[i];
+            if (selActivity == thisEntry.activity) {
+                storedEntries.splice(i, 1);
+            }
+        }
+        localStorage.setItem("entries", JSON.stringify(storedEntries));
+    };
+    selEntry.remove();
+    location.reload();
+})

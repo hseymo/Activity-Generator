@@ -11,7 +11,6 @@ function pageLoad() {
             var thisPrice =  thisEntry.price;
             var thisPart = thisEntry.participants;
             var thisAccess = thisEntry.accessibility;
-            console.log(thisEntry, thisActivity, thisType, thisPrice, thisPart, thisAccess)
 
             postEntry()
 
@@ -19,7 +18,7 @@ function pageLoad() {
                 let newEl = $('<div>');
                 newEl.addClass("col s12 m6");
                 let newCard = $('<div>');
-                newCard.addClass("card blue-grey darken-1 card-content white-text");
+                newCard.addClass("card grey darken-1 card-content white-text");
                 let newContent = $('<div>');
                 newContent.addClass("card-content white-text");
                 let newActivity = $('<h5>');
@@ -32,50 +31,118 @@ function pageLoad() {
                 newPart.text('Participants: ' + thisPart);
                 let newAcc = $('<h6>');
                 newAcc.text('Accessibility: ' + thisAccess);
+
+                let newButton = $('<button>')
+                newButton.addClass('delete grey darken-1 waves-effect waves-orange btn custom-btn');
+                newButton.text('Delete Favorite')
             
                 newContent.append(newActivity);
                 newContent.append(newType);
                 newContent.append(newPrice);
                 newContent.append(newPart);
                 newContent.append(newAcc);
+                newContent.append(newButton);
             
                 newCard.append(newContent);
                 newEl.append(newCard);
                 $('#cardsection').append(newEl);
             }
-
-        
-
         }
+    }
+
+
+    if (favorites.length > 0) {
+        var randomizeButton = $('#faverandomize');
+        randomizeButton.css('display', 'block');
+        console.log('yes')
+
+        randomizeButton.on("click", function(event) {
+            event.preventDefault()
+            var chosen = favorites[Math.floor(Math.random() * favorites.length)];
+            console.log(chosen);
+
+            let chosenActivity = chosen.activity; 
+            var chosenType = chosen.type;
+            var chosenPrice =  chosen.price;
+            var chosenPart = chosen.participants;
+            var chosenAccess = chosen.accessibility;
+
+            function RandomActivityPost() {
+                let newEl = $('<div>');
+                newEl.addClass("col s12 m12");
+                let newCard = $('<div>');
+                newCard.addClass("card grey darken-1 card-content white-text");
+                let newContent = $('<div>');
+                newContent.addClass("card-content white-text");
+                let newActivity = $('<h5>');
+                newActivity.text('Activity: ' + chosenActivity);
+                let newType = $('<h6>');
+                newType.text('Type: ' + chosenType);
+                let newPrice = $('<h6>');
+                newPrice.text('Price: ' + chosenPrice);
+                let newPart = $('<h6>');
+                newPart.text('Participants: ' + chosenPart);
+                let newAcc = $('<h6>');
+                newAcc.text('Accessibility: ' + chosenAccess);
+
+                // let again = $('<button>')
+                // again.addClass("grey darken-1 waves-effect waves-orange btn custom-btn");
+                // again.attr('type', 'submit');
+                // again.text('Chose Another?');
+            
+                newContent.append(newActivity);
+                newContent.append(newType);
+                newContent.append(newPrice);
+                newContent.append(newPart);
+                newContent.append(newAcc);
+                // newContent.append(again);
+            
+                newCard.append(newContent);
+                newEl.append(newCard);
+                $('#faveIdea').append(newEl);
+
+                randomizeButton.css('display', 'none');
+
+                // again.on("click", function(event) {
+                //     event.preventDefault()
+                //     if (favorites.length > 0) {
+                //             var newChosen = favorites[Math.floor(Math.random() * favorites.length)];
+                //             console.log(newChosen);
+                //         // INCOMPLETE - NEED TO SWAP CARD FOR NEW ONE WITH NEW INFO
+                //         }
+                // })
+            }
+            RandomActivityPost();
+        })
+    } else {
+        var ideaBlock = $("#faveIdea");
+        var noIdeas = $('<p>')
+        noIdeas.text('Save some favorites so we can help!')
+        ideaBlock.append(noIdeas)
     }
 }
 pageLoad();
 
-function postEntry(activity, type, price, participants, accessibility) {
-    let newEl = $('<div>');
-    newEl.addClass("col s12 m6");
-    let newCard = $('<div>');
-    newCard.addClass("card blue-grey darken-1 card-content white-text");
-    let newContent = $('<div>');
-    newContent.addClass("card-content white-text");
-    let newActivity = $('<h5>');
-    newActivity.text('Activity: ' + activity);
-    let newType = $('<h6>');
-    newType.text('Type: ' + type);
-    let newPrice = $('<h6>');
-    newPrice.text('Price: ' + price);
-    let newPart = $('<h6>');
-    newPart.text('Participants: ' + participants);
-    let newAcc = $('<h6>');
-    newAcc.text('Accessibility: ' + accessibility);
 
-    newContent.append(newActivity);
-    newContent.append(newType);
-    newContent.append(newPrice);
-    newContent.append(newPart);
-    newContent.append(newAcc);
+$('.delete').on('click', function(event) {
+    event.preventDefault();
+    var selButton = $(this);
+    var selEntry = selButton.parent();
+    var selHeader = selEntry.children().eq(0);
+    var selActivity = selHeader[0].innerHTML;
+    selActivity = selActivity.replaceAll('Activity: ', '');
+    console.log(selActivity);
 
-    newCard.append(newContent);
-    newEl.append(newCard);
-    $('#favorites').append(newEl);
-}
+    var downloadFavorites = JSON.parse(localStorage.getItem("favorites"));
+    if (downloadFavorites !== null) {
+        for (let i=0; i<downloadFavorites.length; i++) {
+            let thisEntry = downloadFavorites[i];
+            if (selActivity == thisEntry.activity) {
+                downloadFavorites.splice(i, 1);
+            }
+        }
+        localStorage.setItem("favorites", JSON.stringify(downloadFavorites));
+    };
+    selEntry.remove();
+    location.reload();
+})

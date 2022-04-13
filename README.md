@@ -9,6 +9,14 @@ https://github.com/hseymo/Activity-Generator
 
 >> Under your generated activity, information from articles on Wikipedia relating to your activity will display to give you more information if needed.
 
+![](./assets/images/mainpage.PNG)
+
+
 >> You can add your activity to favorites with the button below your generated activity, which is saved to local storage and is accessible from the "FAVORITES" tab.
 
+![](./assets/images/favorites.PNG)
+
+
 >> After doing your activity, you can head over to the "JOURNAL" page and log how your activity went. In the future, we'd like to allow users to post their experience and share with others.
+
+![](./assets/images/journal.PNG)

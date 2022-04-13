@@ -192,7 +192,9 @@ function getApi() {
             }
           })
       }
+      if (data.error == "No activity found with the specified parameters"){
       getWiki();
+      }
     })
 }
 })

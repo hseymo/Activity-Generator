@@ -12,7 +12,17 @@ var ParticipantsEl;
 var AccessibilityEl;
 var accessibility = false;
 var favorites = [];
-var favoriteActivity = {};
+// var favoriteActivity = {};
+
+var returnedActivity;
+var returnedType;
+var returnedParticipants;
+// var returnedPrice;
+// var returnedAccessibility;
+var dollarSign;
+var easeOfAccess;
+
+var favoriteButton = $('#favoriteButton')
 
 //   click event for find an activity
 $('#findactivity').on("click", function (event) {
@@ -39,9 +49,9 @@ $('#findactivity').on("click", function (event) {
 
 // if no parameters are used, set boredURL to random URL
   if (!TypeEl && !free && !ParticipantsEl && !accessibility) {
-    boredURL = 'http://www.boredapi.com/api/activity/'
+    boredURL = 'https://www.boredapi.com/api/activity/'
   } else if (TypeEl || free || ParticipantsEl || accessibility) {
-    boredURL = 'http://www.boredapi.com/api/activity?'
+    boredURL = 'https://www.boredapi.com/api/activity?'
   // if a type was provided, add query parameter to URL
       if (TypeEl) {boredURL = boredURL + '&type=' + TypeEl};
       // if preference for activity to be free, add query parameter 
@@ -73,10 +83,10 @@ function getApi() {
         $('select').formSelect();
       } else {
       // retrieve boredAPI data
-        var returnedActivity = data.activity;
-        var returnedType = data.type;
+        returnedActivity = data.activity;
+        returnedType = data.type;
         returnedType = returnedType.charAt(0).toUpperCase() + returnedType.slice(1);
-        var returnedParticipants = data.participants;
+        returnedParticipants = data.participants;
         var returnedPrice = data.price;
         var returnedAccessibility = data.accessibility;
         
@@ -88,7 +98,6 @@ function getApi() {
         var viewPart = document.getElementById("participantsview")
         var viewAccess = document.getElementById("accessview")
 
-        var dollarSign;
         // if statement to display a value symbol instead of the 0-1 range
         if (returnedPrice < 0.3 && returnedPrice > 0) {
           dollarSign = "$"
@@ -100,7 +109,6 @@ function getApi() {
           dollarSign = "Free"
         }
         // if statement to display level of difficulty in words instead of 0-1 range
-        var easeOfAccess;
         if (returnedAccessibility >= 0 && returnedAccessibility < 0.4) {
           easeOfAccess = "Difficult"
         } else if (returnedAccessibility >= 0.4 && returnedAccessibility < 0.8) {
@@ -119,53 +127,10 @@ function getApi() {
 
           // show favorite button
           var resultCard = $('#result-card')
-          var favoriteButton = $('#favoriteButton')
+          
           favoriteButton.show();
           
-          // add event listener for button
-          favoriteButton.on("click", function (event) {
-            event.preventDefault();
-            favoriteButton.hide()
-            // EXPERIMENT
-            faveParentEl = $(this).parent();
-            faveUl = faveParentEl.children().eq(1)[0];
-            console.log(faveUl)
 
-            // faveActivity = 
-            // faveType = 
-            // favePrice =
-            // faveParticipants =
-            // faveAccess = 
-
-            favoriteActivity = {
-              activity: returnedActivity,
-              type: returnedType,
-              price: dollarSign,
-              participants: returnedParticipants,
-              accessibility: easeOfAccess
-            }
-            
-            console.log(favoriteActivity)
-
-            function saveFavorite () {
-              favorites = [];
-              var storedFavorites = JSON.parse(localStorage.getItem("favorites"));
-              if (storedFavorites !== null) {
-                favorites = storedFavorites;
-              }
-              favorites.push(favoriteActivity);
-              localStorage.setItem("favorites", JSON.stringify(favorites));
-            }
-            saveFavorite();
-
-            // show 'added to faves'
-            var notify = $('#notifyfave');
-            notify.css('display', 'block');
-            setTimeout(function(){
-              notify.css('display', 'none')
-            }, 2000)
-
-          })
       }
       // retrieve wiki data
       var wikiURL = 'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + returnedActivity + '&utf8=&format=json&origin=*'
@@ -198,7 +163,7 @@ function getApi() {
               // remove extra HTML from snippets
               snippet = snippet.replaceAll('<span class="searchmatch">', '');
               snippet = snippet.replaceAll('</span>', '')
-              // TODO: REMOVE QUOTE TEXT
+              snippet = snippet.replaceAll('&quot', '')
               // TODO: parse for wiki link! 
               console.log(title, snippet)
 
@@ -227,3 +192,39 @@ function getApi() {
     })
 }
 })
+
+function saveFavorite (object) {
+  favorites = [];
+  var storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+  if (storedFavorites !== null) {
+    favorites = storedFavorites;
+  }
+  favorites.push(object);
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+}
+
+          // add event listener for button
+          favoriteButton.on("click", function (event) {
+            event.preventDefault();
+            favoriteButton.hide()
+
+            var favoriteActivity = {
+              activity: returnedActivity,
+              type: returnedType,
+              price: dollarSign,
+              participants: returnedParticipants,
+              accessibility: easeOfAccess
+            }
+            
+            console.log(favoriteActivity)
+
+            saveFavorite(favoriteActivity);
+
+            // show 'added to faves'
+            var notify = $('#notifyfave');
+            notify.css('display', 'block');
+            setTimeout(function(){
+              notify.css('display', 'none')
+            }, 2000)
+
+          })

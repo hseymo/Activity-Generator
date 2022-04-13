@@ -89,14 +89,6 @@ function getApi() {
         returnedParticipants = data.participants;
         var returnedPrice = data.price;
         var returnedAccessibility = data.accessibility;
-        
-        // Code to display input query results in "Here..." box
-        var activityHeader = document.getElementById("resultheader")
-        var viewActivity = document.getElementById("activityview")
-        var viewType = document.getElementById("typeview")
-        var viewPrice = document.getElementById("priceview")
-        var viewPart = document.getElementById("participantsview")
-        var viewAccess = document.getElementById("accessview")
 
         // if statement to display a value symbol instead of the 0-1 range
         if (returnedPrice < 0.3 && returnedPrice > 0) {
@@ -117,6 +109,14 @@ function getApi() {
           easeOfAccess = "Easy peasy"
         }
 
+        // Code to display input query results in "Here..." box
+        var activityHeader = document.getElementById("resultheader")
+        var viewActivity = document.getElementById("activityview")
+        var viewType = document.getElementById("typeview")
+        var viewPrice = document.getElementById("priceview")
+        var viewPart = document.getElementById("participantsview")
+        var viewAccess = document.getElementById("accessview")
+
         // putting text content to display returned data based on parameters
         activityHeader.textContent = "Here is your activity!"
         viewActivity.textContent = "Activity: " + returnedActivity;
@@ -125,10 +125,8 @@ function getApi() {
         viewPart.textContent = "Participants: " + returnedParticipants;
         viewAccess.textContent = "Accessibility: " + easeOfAccess;
 
-          // show favorite button
-          var resultCard = $('#result-card')
-          
-          favoriteButton.show();
+        // show favorite button          
+        favoriteButton.show();
           
 
       }
@@ -144,7 +142,7 @@ function getApi() {
           })
           .then(function (data) {
             var results = data.query.search;
-            console.log(results);
+            console.log(data.query.search);
 
             var wikiHeader = document.getElementById('wikiHeader')
             wikiHeader.attr = 'class', 'resultTitle white-text'
@@ -155,35 +153,41 @@ function getApi() {
             }
 
             // retrieving 10 relevant wiki results
-            for (let i = 0; i < results.length; i++) {
+            for (let i = 0; i < 3; i++) {
               let resultsEl = results[i];
-              console.log(resultsEl);
+              let resultsPageID = results[i].pageid;
+              let pageURL = 'https://en.wikipedia.org/?curid=' + resultsPageID;
+              console.log(pageURL);
               var title = resultsEl.title;
               var snippet = resultsEl.snippet;
               // remove extra HTML from snippets
               snippet = snippet.replaceAll('<span class="searchmatch">', '');
               snippet = snippet.replaceAll('</span>', '')
               snippet = snippet.replaceAll('&quot', '')
-              // TODO: parse for wiki link! 
               console.log(title, snippet)
 
               function wikiEntry() {
                 let wikiEl = document.createElement('div');
-                wikiEl.attr = 'class', 'card blue-grey darken-1 card-content white-text';
+                wikiEl.setAttribute('class', 'card grey darken-1 card-content white-text');
                 let wikiCard = document.createElement('div');
-                wikiCard.attr = 'class', 'card-content white-text';
+                wikiCard.setAttribute('class', 'card-content white-text');
                 let wikiTitle = document.createElement('h5');
-                wikiTitle.textContent = `Title: ${title}`;
+                wikiTitle.textContent = `${title}`;
                 let wikiSnippet = document.createElement('p');
                 wikiSnippet.textContent = `Description: ${snippet}`;
+                let linkToPage = document.createElement('a');
+                linkToPage.textContent = 'Click Me';
+                linkToPage.setAttribute('href', pageURL);
+                linkToPage.setAttribute('target', '_blank');
+
 
                 wikiCard.append(wikiTitle);
                 wikiCard.append(wikiSnippet);
+                wikiCard.append(linkToPage);
                 wikiEl.append(wikiCard);
                 document.querySelector('.wikiResults').append(wikiEl);
                 console.log(wikiEl);
               }
-
               wikiEntry();
             }
           })
@@ -203,28 +207,27 @@ function saveFavorite (object) {
   localStorage.setItem("favorites", JSON.stringify(favorites));
 }
 
-          // add event listener for button
-          favoriteButton.on("click", function (event) {
-            event.preventDefault();
-            favoriteButton.hide()
+// add event listener for button
+favoriteButton.on("click", function (event) {
+  event.preventDefault();
+  favoriteButton.hide()
 
-            var favoriteActivity = {
-              activity: returnedActivity,
-              type: returnedType,
-              price: dollarSign,
-              participants: returnedParticipants,
-              accessibility: easeOfAccess
-            }
+  var favoriteActivity = {
+    activity: returnedActivity,
+    type: returnedType,
+    price: dollarSign,
+    participants: returnedParticipants,
+    accessibility: easeOfAccess
+  }
             
-            console.log(favoriteActivity)
+  console.log(favoriteActivity)
 
-            saveFavorite(favoriteActivity);
+  saveFavorite(favoriteActivity);
 
-            // show 'added to faves'
-            var notify = $('#notifyfave');
-            notify.css('display', 'block');
-            setTimeout(function(){
-              notify.css('display', 'none')
-            }, 2000)
-
-          })
+  // show 'added to faves'
+  var notify = $('#notifyfave');
+  notify.css('display', 'block');
+  setTimeout(function(){
+    notify.css('display', 'none')
+    }, 2000)
+})

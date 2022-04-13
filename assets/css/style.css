@@ -7,6 +7,10 @@
 }
 /*google font family is above*/
 
+.brand-logo {
+    margin-right: 15px;
+}
+
 body {
     height: 100vh;
     background-color: #3A3845;
@@ -31,4 +35,21 @@ body {
 
 #favoriteButton {
     margin: 10px;
+}
+
+#favButtonWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.datepicker-day-button {
+    background-color: transparent;
+    border: none;
+    line-height: 38px;
+    display: block;
+    width: 100%;
+    border-radius: 50%;
+    padding: 0 5px;
+    cursor: pointer;
+    color:blue;
 }

@@ -32,3 +32,9 @@ body {
 #favoriteButton {
     margin: 10px;
 }
+
+#favButtonWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

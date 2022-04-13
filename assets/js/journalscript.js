@@ -3,6 +3,7 @@ $(document).ready(function(){
     $('#journalModal').modal();
     $('#journalModal').modal('open');
     $('select').formSelect();
+    $('.sidenav').sidenav();
     $('.datepicker').datepicker();
     $('.feelings').autocomplete({
         data: {

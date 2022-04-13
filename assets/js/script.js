@@ -28,7 +28,6 @@ var favoriteButton = $('#favoriteButton')
 $('#findactivity').on("click", function (event) {
   event.preventDefault();
 
-  $("p").remove();
 // pull data from form submission and save as variables
   TypeEl = $('#type').val();
   CostEl = $('#price').val();
@@ -192,7 +191,7 @@ function getApi() {
             }
           })
       }
-      if (data.error == "No activity found with the specified parameters"){
+      if (data.error != "No activity found with the specified parameters"){
       getWiki();
       }
     })

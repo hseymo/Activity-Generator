@@ -1,0 +1,34 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Coustard', serif; 
+}
+/*google font family is above*/
+
+body {
+    height: 100vh;
+    background-color: #3A3845;
+    font-family: 'Coustard', serif; 
+}
+
+#prefpara {
+    margin: 10px;
+}
+
+#activityview {
+    font-size: 20px;
+}
+
+#result-card li {
+    margin: 25px 0px 0px 25px;
+}
+
+#journalForm .row {
+    margin: 0px;
+}
+
+#favoriteButton {
+    margin: 10px;
+}

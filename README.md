@@ -18,7 +18,7 @@ https://github.com/hseymo/Activity-Generator
 
 Welcome Modal <br>
 ![](./assets/images/welcomeHS.png) <br><br>
-Activity Page with result displated <br>
+Activity Page with result displayed <br>
 ![](./assets/images/activityresultHS.png)<br><br>
 Preference form filled out <br>
 ![](./assets/images/preferencesHS.png)<br><br>

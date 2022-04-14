@@ -16,9 +16,23 @@ https://github.com/hseymo/Activity-Generator
 
 # Content
 
-![](./assets/images/mainpage.PNG)
-![](./assets/images/favorites.PNG)
-![](./assets/images/journal.PNG)
+Welcome Modal <br>
+![](./assets/images/welcomeHS.png) <br><br>
+Activity Page with result displated <br>
+![](./assets/images/activityresultHS.png)<br><br>
+Preference form filled out <br>
+![](./assets/images/preferencesHS.png)<br><br>
+Favorites page <br>
+![](./assets/images/favoritesHS.png)<br><br>
+Journal entry prompts <br>
+![](./assets/images/journalentryHS.png)<br><br>
+Journal entries <br>
+![](./assets/images/journalHS.png)<br><br>
+Responsive layout <br>
+![](./assets/images/responsivelayoutHS.png)<br><br>
+Side Navbar on small screens <br>
+![](./assets/images/responsivemenuHS.png)<br><br>
+
 
 # Summary
 

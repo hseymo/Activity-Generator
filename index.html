@@ -2,19 +2,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Activity Generator</title>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity Generator</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Coustard&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Coustard&display=swap" rel="stylesheet">
     <!-- custom stylesheet -->
-    <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
@@ -30,7 +30,6 @@
         </ul>
       </div>
     </nav>
-
     <ul class="sidenav" id="mobile-nav">
       <li><a href="./index.html">Activities</a></li>
       <li><a href="./journal.html">Journal</a></li>
@@ -38,108 +37,115 @@
     </ul>
   </header>
 
-    <main>
-        <!-- Welcome Modal -->
-        <div id="welcomeModal" class="modal">
-            <div class="modal-content">
-                <h4>Welcome!</h4>
-                <p>Are you here because you're bored? Are you looking for something fun to do today? We can help! Let us
-                    give you a suggestion for a random activity to complete!</p>
+  <main>
+    <section class="mainpage">
+      <div class="row">
+        <!-- preference section -->
+        <div class="col s12 m5 l3">
+          <div class="card brown lighten-1">
+            <div class="card-content white-text">
+              <span class="card-title center">Do you have preferences?</span>
+              <h6 id="prefpara" class="center mb3">If so, please let us know!</h6>
+                <form id="preferenceForm">
+                  <!-- type -->
+                  <div class="input-field col s12">
+                    <select id="type">
+                      <option disabled selected>Pick one...</option>
+                      <option value="education">Education</option>
+                      <option value="recreational">Recreational</option>
+                      <option value="social">Social</option>
+                      <option value="diy">DIY</option>
+                      <option value="charity">Charity</option>
+                      <option value="cooking">Cooking</option>
+                      <option value="relaxation">Relaxation</option>
+                      <option value="music">Music</option>
+                      <option value="busywork">Busywork</option>
+                    </select>
+                    <label style="color:black;" for="type">Type of Activity</label>
+                  </div>
+                  <!-- price -->
+                  <div class="input-field col s12">
+                    <select id="price">
+                      <option disabled selected>Pick one...</option>
+                      <option value="0.0">Free</option>
+                      <option value="nopreference">No preference</option>
+                    </select>
+                    <label style="color:black;" for="price">Activity Cost</label>
+                  </div>
+                  <!-- participants -->
+                  <div class="input-field col s12">
+                    <select id="participants">
+                      <option disabled selected>Pick one...</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                    <label style="color:black;" for="participants">Number of Participants</label>
+                    </div>
+                  <!-- accessibility -->
+                  <div class="input-field col s12">
+                    <select id="accessibility">
+                      <option disabled selected>Pick one...</option>
+                      <option value="1">Yes</option>
+                      <option value="nopreference">No preference</option>
+                    </select>
+                    <label style="color:black;" for="accessibility">Accessibility</label>
+                  </div>
+                  <!-- button -->
+                  <div>
+                    <button id="findactivity" type="submit" class="grey darken-1 waves-effect waves-orange btn custom-btn">Find me an activity!</button>
+                  </div>
+                </form>
             </div>
-            <div class="modal-footer">
-                <a id="#getStarted" class="getstarted modal-close waves-effect waves-green btn-flat">Get Started</a>
-            </div>
+          </div>
         </div>
 
         <div class="row">
-            <div class="col s12 m5 l3">
-                <div class="card brown lighten-1">
-                    <div class="card-content white-text">
-                        <span class="card-title center">Do you have preferences?</span>
-                        <h6 id="prefpara" class="center mb3">If so, please let us know!</h6>
-                        <form id="preferenceForm">
-                            <!-- type -->
-                            <div class="input-field col s12">
-                                <select id="type">
-                                    <option disabled selected>Pick one...</option>
-                                    <option value="education">Education</option>
-                                    <option value="recreational">Recreational</option>
-                                    <option value="social">Social</option>
-                                    <option value="diy">DIY</option>
-                                    <option value="charity">Charity</option>
-                                    <option value="cooking">Cooking</option>
-                                    <option value="relaxation">Relaxation</option>
-                                    <option value="music">Music</option>
-                                    <option value="busywork">Busywork</option>
-                                </select>
-                                <label style="color:black;" for="type">Type of Activity</label>
-                            </div>
-                            <!-- price -->
-                            <div class="input-field col s12">
-                              
-                                <select id="price">
-                                    <option disabled selected>Pick one...</option>
-                                    <option value="0.0">Free</option>
-                                    <option value="nopreference">No preference</option>
-                                </select>
-                                <label style="color:black;" for="price">Activity Cost</label>
-                            </div>
-                            <!-- participants -->
-                            <div class="input-field col s12">
-                                <input placeholder="Type a number..." id="participants" type="number" min="1" max="8"
-                                    class="validate">
-                                <label style="color:black;" for="participants">Number of Participants</label>
-                            </div>
-                            <!-- accessibility -->
-                            <div class="input-field col s12">
-                                <select id="accessibility">
-                                    <option disabled selected>Pick one...</option>
-                                    <option value="1">Yes</option>
-                                    <option value="nopreference">No preference</option>
-                                </select>
-                                <label style="color:black;" for="accessibility">Accessibility</label>
-                            </div>
-                            <div>
-                                <button id="findactivity" type="submit"
-                                    class=" grey darken-1 waves-effect waves-orange btn custom-btn">Find me an
-                                    activity!</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+        <!-- activity recommenation card section -->
+          <div class="row">
+            <div class="col s12 m7 l9">
+              <div class="card-panel   brown lighten-1">
+                <span id="result-card" class="black-text">
+                  <h5 id="resultheader" class="resultTitle white-text">We can't wait to find you an activity! Please click "Find Me an Activity" button to the left...</h5>
+                  <ul>
+                    <li id="activityview"></li>
+                    <li id="typeview"></li>
+                    <li id="priceview"></li>
+                    <li id="participantsview"></li>
+                    <li id="accessview"></li>
+                  </ul>
+                  <button id="favoriteButton" type="submit" class="grey darken-1 waves-effect waves-orange btn custom-btn" style="display: none">Favorite this activity</button>
+                  <span id="notifyfave" class="center" style="display: none">Added to favorites!</span>
+              </span>
+              </div>
             </div>
-
-    <div class="row">
-      <!-- results card section -->
-      <div class="row">
-        <div class="col s12 m7 l9">
-          <div class="card-panel   brown lighten-1">
-            <span id="result-card" class="black-text">
-              <h5 id="resultheader" class="resultTitle white-text">We can't wait to find you an activity! Please click "Find Me an Activity" button to the left...</h5>
-              <ul>
-                <li id="activityview"></li>
-                <li id="typeview"></li>
-                <li  id="priceview"  ></li>
-                <li id="participantsview"></li>
-                <li id="accessview"></li>
-              </ul>
-              <button id="favoriteButton" type="submit" class="grey darken-1 waves-effect waves-orange btn custom-btn" style="display: none">Favorite this activity</button>
-              <span id="notifyfave" class="center" style="display: none">Added to favorites!</span>
-            </span>
-          </div>
-        </div>
-        <div>
-          <div class="col s12 m7 l9">
-            <div class="card-panel brown lighten-1">
+            <!-- wikipedia results section -->
+            <div class="col s12 m7 l9">
+              <div class="card-panel brown lighten-1">
                 <h5 id="wikiHeader" class="resultTitle white-text">Seriously! Click it!</h5>
                 <div class="row">
                   <div class="wikiResults"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-    </main>
-<!-- search error modal -->
+      </div>
+    </section>
+    <!-- MODALS -->
+    <!-- Welcome Modal -->
+    <div id="welcomeModal" class="modal">
+      <div class="modal-content">
+        <h4>Welcome!</h4>
+        <p>Are you here because you're bored? Are you looking for something fun to do today? We can help! Let us give you a suggestion for a random activity to complete!</p>
+      </div>
+      <div class="modal-footer">
+        <a id="#getStarted" class="getstarted modal-close waves-effect waves-green btn-flat">Get Started</a>
+      </div>
+    </div>
+    <!-- search error modal -->
     <div id="errorModal" class="modal">
       <div class="modal-content">
         <h4>Oops!</h4>
@@ -149,13 +155,14 @@
         <a id="#tryAgain" class="tryAgain modal-close waves-effect waves-green btn-flat">Try Again?</a>
       </div>
     </div>
+  </main>
 
     <!-- script section -->
 
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="./assets/js/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

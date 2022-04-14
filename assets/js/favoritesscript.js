@@ -4,7 +4,9 @@ $(document).ready(function () {
 
 var favorites = [];
 
+// on page load
 function pageLoad() {
+    // download favorites
     var downloadedFavorites = JSON.parse(localStorage.getItem("favorites"));
     if (downloadedFavorites !== null) {
         favorites = downloadedFavorites;
@@ -15,10 +17,11 @@ function pageLoad() {
             var thisPrice =  thisEntry.price;
             var thisPart = thisEntry.participants;
             var thisAccess = thisEntry.accessibility;
-
+            // create card for each
             postEntry()
 
             function postEntry() {
+                // create elements and add text
                 let newEl = $('<div>');
                 newEl.addClass("col s12 m12 l6");
                 let newCard = $('<div>');
@@ -40,6 +43,7 @@ function pageLoad() {
                 newButton.addClass('delete grey darken-1 waves-effect waves-orange btn custom-btn');
                 newButton.text('Delete Favorite')
             
+                // append to page
                 newContent.append(newActivity);
                 newContent.append(newType);
                 newContent.append(newPrice);
@@ -54,8 +58,8 @@ function pageLoad() {
         }
     }
 
-
-    if (favorites.length > 0) {
+    // if there is at least 2 favorites, add button to choose random one
+    if (favorites.length > 1) {
         var randomizeButton = $('#faverandomize');
         randomizeButton.css('display', 'block');
         console.log('yes')
@@ -88,33 +92,18 @@ function pageLoad() {
                 newPart.text('Participants: ' + chosenPart);
                 let newAcc = $('<h6>');
                 newAcc.text('Accessibility: ' + chosenAccess);
-
-                // let again = $('<button>')
-                // again.addClass("grey darken-1 waves-effect waves-orange btn custom-btn");
-                // again.attr('type', 'submit');
-                // again.text('Chose Another?');
             
                 newContent.append(newActivity);
                 newContent.append(newType);
                 newContent.append(newPrice);
                 newContent.append(newPart);
                 newContent.append(newAcc);
-                // newContent.append(again);
             
                 newCard.append(newContent);
                 newEl.append(newCard);
                 $('#faveIdea').append(newEl);
 
                 randomizeButton.css('display', 'none');
-
-                // again.on("click", function(event) {
-                //     event.preventDefault()
-                //     if (favorites.length > 0) {
-                //             var newChosen = favorites[Math.floor(Math.random() * favorites.length)];
-                //             console.log(newChosen);
-                //         // INCOMPLETE - NEED TO SWAP CARD FOR NEW ONE WITH NEW INFO
-                //         }
-                // })
             }
             RandomActivityPost();
         })
@@ -127,7 +116,7 @@ function pageLoad() {
 }
 pageLoad();
 
-
+// delete button to remove entry from page and local storage
 $('.delete').on('click', function(event) {
     event.preventDefault();
     var selButton = $(this);

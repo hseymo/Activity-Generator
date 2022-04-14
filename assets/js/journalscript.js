@@ -7,44 +7,44 @@ $(document).ready(function(){
     $('.datepicker').datepicker();
     $('.feelings').autocomplete({
         data: {
-          "Anxious": null,
-          "Miserable": null,
-          "Nervous": null,
-          "Bored": null,
-          "Happy": null,
-          "Surprised": null,
-          "Fear": null,
-          "Sad": null,
-          "Confused": null,
-          "Skeptical": null,
-          "Unsure": null,
-          "Encouraged": null,
-          "Hesitant": null,
-          "Perplexed": null,
-          "Stunned": null,
-          "Glad": null,
-          "Pessimistic": null,
-          "Upset": null,
-          "Delighted": null,
-          "Interested": null,
-          "Angry": null,
-          "Afraid": null,
-          "Joyful": null,
-          "Tense": null,
-          "Shy": null,
-          "Loving": null,
-          "Annoyed": null,
-          "Curious": null,
-          "Fulfilled": null,
-          "Complete": null,
-          "Ecstatic": null,
-          "Energetic": null,
-          "Satisfied": null,
-          "Pleased": null,
-          "Optimistic": null,
-        },
-      });
-  });
+            "Anxious": null,
+            "Miserable": null,
+            "Nervous": null,
+            "Bored": null,
+            "Happy": null,
+            "Surprised": null,
+            "Fear": null,
+            "Sad": null,
+            "Confused": null,
+            "Skeptical": null,
+            "Unsure": null,
+            "Encouraged": null,
+            "Hesitant": null,
+            "Perplexed": null,
+            "Stunned": null,
+            "Glad": null,
+            "Pessimistic": null,
+            "Upset": null,
+            "Delighted": null,
+            "Interested": null,
+            "Angry": null,
+            "Afraid": null,
+            "Joyful": null,
+            "Tense": null,
+            "Shy": null,
+            "Loving": null,
+            "Annoyed": null,
+            "Curious": null,
+            "Fulfilled": null,
+            "Complete": null,
+            "Ecstatic": null,
+            "Energetic": null,
+            "Satisfied": null,
+            "Pleased": null,
+            "Optimistic": null,
+        }
+    });
+});
 
 var journalEntries = [];  
 // Recalls journal entries from previous logs
@@ -73,52 +73,53 @@ $('#submitentry').on("click", function (event) {
     console.log(activityCompleted, dateCompleted, feelingsBefore, feelingsAfter, comments);
 
     if (activityCompleted || dateCompleted || feelingsBefore || feelingsAfter || comments) {
-    postEntry(activityCompleted, dateCompleted, feelingsBefore, feelingsAfter, comments);
+        postEntry(activityCompleted, dateCompleted, feelingsBefore, feelingsAfter, comments);
 
-    // save to local storage
-    var journalObject = {
-        activity: activityCompleted,
-        date: dateCompleted,
-        before: feelingsBefore,
-        after: feelingsAfter,
-        textinput: comments
+        // save to local storage
+        var journalObject = {
+            activity: activityCompleted,
+            date: dateCompleted,
+            before: feelingsBefore,
+            after: feelingsAfter,
+            textinput: comments
+        }
+
+        saveEntry(journalObject);
+
+        // clear input fields
+        $('#activity').val('');
+        $('#when').val('');
+        $('#before').val('');
+        $('#after').val('');
+        $('#write').val('');
     }
 
-    saveEntry(journalObject);
+    // delete from page and local storage 
+    $('.delete').on('click', function() {
+        var selButton = $(this);
+        var selEntry = selButton.parent();
+        var selHeader = selEntry.children().eq(0);
+        var selActivity = selHeader[0].innerHTML;
+        selActivity = selActivity.replaceAll('Activity: ', '');
+        console.log(selActivity);
 
-    // clear input fields
-    $('#activity').val('');
-    $('#when').val('');
-    $('#before').val('');
-    $('#after').val('');
-    $('#write').val('');
-}
-
-$('.delete').on('click', function() {
-    var selButton = $(this);
-    var selEntry = selButton.parent();
-    var selHeader = selEntry.children().eq(0);
-    var selActivity = selHeader[0].innerHTML;
-    selActivity = selActivity.replaceAll('Activity: ', '');
-    console.log(selActivity);
-
-    var storedEntries = JSON.parse(localStorage.getItem("entries"));
-    if (storedEntries !== null) {
-        for (let i=0; i<storedEntries.length; i++) {
-            let thisEntry = storedEntries[i];
-            if (selActivity == thisEntry.activity) {
-                storedEntries.splice(i, 1);
+        var storedEntries = JSON.parse(localStorage.getItem("entries"));
+        if (storedEntries !== null) {
+            for (let i=0; i<storedEntries.length; i++) {
+                let thisEntry = storedEntries[i];
+                if (selActivity == thisEntry.activity) {
+                    storedEntries.splice(i, 1);
+                }
             }
-        }
-        localStorage.setItem("entries", JSON.stringify(storedEntries));
-    };
-    selEntry.remove();
-    location.reload();
+            localStorage.setItem("entries", JSON.stringify(storedEntries));
+        };
+        selEntry.remove();
+        location.reload();
     })
-
 })
 
 function postEntry(activity, date, before, after, comments) {
+    // create card elements and give them text
     let newEl = $('<div>');
     newEl.addClass("col s12 m12 l6");
     let newCard = $('<div>');
@@ -133,12 +134,13 @@ function postEntry(activity, date, before, after, comments) {
     newBefore.text('How you were feeling before: ' + before);
     let newAfter = $('<h6>');
     newAfter.text('How you were feeling after: ' + after);
-    let newComments = $('<p>');
-    newComments.text('Your comments: ' + comments);
-    let newButton = $('<button>')
+    let newComments = $('<h6>');
+    newComments.text('Comments: ' + comments);
+    let newButton = $('<button>');
     newButton.addClass('delete grey darken-1 waves-effect waves-orange btn custom-btn');
-    newButton.text('Delete Entry')
+    newButton.text('Delete Entry');
 
+    //append items 
     newContent.append(newActivity);
     newContent.append(newDate);
     newContent.append(newBefore);
@@ -161,6 +163,7 @@ function saveEntry(object) {
     localStorage.setItem("entries", JSON.stringify(journalEntries));
 }
 
+// 
 $('.delete').on('click', function() {
     var selButton = $(this);
     var selEntry = selButton.parent();

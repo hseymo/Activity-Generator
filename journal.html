@@ -20,40 +20,30 @@
 <body>
     <header id="header">
         <nav>
-          <div class="nav-wrapper brown lighten-3">
-            <a href="#!" class="brand-logo right">WikiOnBored</a>
-            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-              <li><a class=" grey darken-1 waves-effect waves-purple btn" href="./index.html" rel="noopener noreferrer">Activities</a></li>
-              <li><a class=" grey darken-1 waves-effect waves-purple btn" href="./journal.html" rel="noopener noreferrer">Journal</a></li>
-              <li><a class=" grey darken-1 waves-effect waves-purple btn" href="./favorites.html" rel="noopener noreferrer">Favorites</a></li>
-            </ul>
-          </div>
+            <div class="nav-wrapper brown lighten-3">
+                <a href="#!" class="brand-logo right">WikiOnBored</a>
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a class=" grey darken-1 waves-effect waves-orange btn" href="./index.html">Activities</a></li>
+                    <li><a class=" grey darken-1 waves-effect waves-orange btn" href="./journal.html">Journal</a></li>
+                    <li><a class=" grey darken-1 waves-effect waves-orange btn" href="./favorites.html">Favorites</a></li>
+                </ul>
+            </div>
         </nav>
-    
         <ul class="sidenav" id="mobile-nav">
-          <li><a href="./index.html" rel="noopener noreferrer">Activities</a></li>
-          <li><a href="./journal.html" rel="noopener noreferrer">Journal</a></li>
-          <li><a href="./favorites.html" rel="noopener noreferrer">Favorites</a></li>
+          <li><a href="./index.html">Activities</a></li>
+          <li><a href="./journal.html">Journal</a></li>
+          <li><a href="./favorites.html">Favorites</a></li>
         </ul>
-      </header>
+    </header>
 
     <main>
-<!-- Welcome Modal -->
-    <!-- <div id="journalModal" class="modal">
-        <div class="modal-content">
-            <h4>Welcome!</h4>
-            <p>Did you enjoy our activity? Please use this page to journal your experience!</p>
-        </div>
-        <div class="modal-footer">
-            <a id="#getStarted" class="getstarted modal-close waves-effect waves-green btn-flat">Get Started</a>
-        </div>
-    </div> -->
 <!-- enter journal entry -->
     <div class="row">
         <div class="card brown lighten-1">
             <div class="card-content white-text ">
-                <span class="card-title center">Did you enjoy our activity? Please use this page to journal your experience!</span>
+                <span class="card-title center">Did you enjoy our activity? Please use this page to journal your experience! </span>
+                <p class="center">Please complete at least one section of this form to save your entry.</p>
                 <form id="journalForm">
                     <!-- what activity did you complete -->
                     <div class="row">
@@ -103,9 +93,8 @@
         <div class="card-panel brown lighten-1 ">
             <h5 class="resultTitle white-text center s12">Your Journal Entries</h3>
             <div class="row">
-                <div id="journalResults">
-                    </div>
-                </div>
+                <div id="journalResults"></div>
+            </div>
         </div>
     </div>
 

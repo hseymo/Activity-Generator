@@ -14,6 +14,10 @@
 
 https://github.com/hseymo/Activity-Generator
 
+# Technologies
+
+This project utilizes HTML, CSS, Javascript, Materialize framework, and jQuery. Fetch requests were made to the two APIs mentioned above (BoredAPI and WikiAPI). 
+
 # Content
 
 Welcome Modal <br>
@@ -38,3 +42,9 @@ Side Navbar on small screens <br>
 
 >> This site is designed to help users with boredom, and show them any information they may need to find out anything they don't know about the activity through articles shown when an activity is generated. With the Journal and Favorites features, this site excels at usefulness for the bored.
 
+# Contact Information
+This project was a group collaboration by Jaden, Kalif, Chris and Haley. You can reach us at our email addresses below:
+- Haley: haleycseymour@comcast.net
+- Kalif: kpurcedesigns@gmail.com
+- Chris:
+- Jaden: 

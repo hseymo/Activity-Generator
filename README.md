@@ -46,5 +46,5 @@ Side Navbar on small screens <br>
 This project was a group collaboration by Jaden, Kalif, Chris and Haley. You can reach us at our email addresses below:
 - Haley: haleycseymour@comcast.net
 - Kalif: kpurcedesigns@gmail.com
-- Chris:
+- Chris: delagarzachris@icloud.com
 - Jaden: 

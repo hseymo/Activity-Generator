@@ -45,9 +45,9 @@ $('#findactivity').on("click", function (event) {
 
   // if no parameters are used, set boredURL to random URL
   if (!TypeEl && !free && !ParticipantsEl && !accessibility) {
-    boredURL = 'https://www.boredapi.com/api/activity/'
+    boredURL = 'http://www.boredapi.com/api/activity/'
   } else if (TypeEl || free || ParticipantsEl || accessibility) {
-    boredURL = 'https://www.boredapi.com/api/activity?'
+    boredURL = 'http://www.boredapi.com/api/activity?'
     // if a type was provided, add query parameter to URL
     if (TypeEl) {boredURL = boredURL + '&type=' + TypeEl};
     // if preference for activity to be free, add query parameter 

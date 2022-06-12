@@ -12,7 +12,7 @@
  
 # Deployment
 
-https://github.com/hseymo/Activity-Generator
+Due to the Bored API not responding to HTTPS requests, our [Github page](https://hseymo.github.io/Activity-Generator/) is returning 500 status failed fetch requests from their API. We have additionally deployed to [Heroku](https://wikionbored.herokuapp.com/) to troubleshoot this problem.
 
 # Technologies
 

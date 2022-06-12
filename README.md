@@ -1,4 +1,9 @@
-# WikiOnBored
+# [WikiOnBored](https://hseymo.github.io/Activity-Generator/)
+
+# Notice
+PLEASE NOTE THAT THE BORED API IS NO LONGER RESPONDING TO OUR FETCH REQUESTS AND IS RETURNING A FAILED 500 STATUS. Please still visit our deployed app to checkout our other features and functionality! 
+
+# Description
 
 >> AS A USER who is very bored and may or may not be ignorant about certain activities,
 >> I WANT an activity randomly recommended for me, with or without parameters of my choosing, and relevant wikipedia definitions and links of said activity
@@ -12,7 +17,7 @@
  
 # Deployment
 
-Due to the Bored API not responding to HTTPS requests, our [Github page](https://hseymo.github.io/Activity-Generator/) is returning 500 status failed fetch requests from their API. We have additionally deployed to [Heroku](https://wikionbored.herokuapp.com/) to troubleshoot this problem.
+Please see our deployed app on [Github pages](https://hseymo.github.io/Activity-Generator/). Note that Bored API is returning failed 500 status fetch requests at this time and therefore the activity generator is currently unavailable. Please check the overall page and working features, such as the journal!
 
 # Technologies
 
